@@ -943,3 +943,9 @@
       const message=document.getElementById('message').value.trim();
       if(!name||!email){alert('Please fill in your name and email.');return;}
       const subject=encodeURIComponent('DC Ultimate Academy Enquiry: '+(enquiry||'General'))
+      const mailto = `mailto:dcultimatefrisbeeacademy@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
