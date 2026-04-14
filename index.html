@@ -1,563 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DC Ultimate Frisbee Academy | Making the Ultimate Athlete</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --black: #0a0a0a;
-      --white: #f5f0e8;
-      --gold: #c9a84c;
-      --gold-light: #e8c96a;
-      --gold-dim: rgba(201,168,76,0.15);
-      --mid: #141414;
-      --grey: #2e2e2e;
-      --text-muted: #777;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Barlow', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Cursor */
-    .cursor {
-      width: 10px; height: 10px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9999;
-      transition: transform 0.15s ease, background 0.2s;
-      transform: translate(-50%,-50%);
-    }
-    .cursor-ring {
-      width: 34px; height: 34px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9998;
-      transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.3s;
-      transform: translate(-50%,-50%);
-      opacity: 0.4;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.3rem 4rem;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    nav.scrolled {
-      background: rgba(10,10,10,0.96);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(201,168,76,0.12);
-    }
-    .nav-logo img { height: 32px; width: auto; display: block; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.67rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--white); text-decoration: none; opacity: 0.6;
-      transition: opacity 0.2s, color 0.2s;
-    }
-    .nav-links a:hover { opacity: 1; color: var(--gold); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid; grid-template-rows: 1fr auto;
-      padding: 0 4rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg-photo {
-      position: absolute; inset: 0;
-      background: url("images/image1.jpg") center 30% / cover no-repeat;
-      filter: brightness(0.22) saturate(0.6);
-    }
-    .hero-bg-overlay {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to right, rgba(10,10,10,0.92) 45%, rgba(10,10,10,0.3) 100%),
-        linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 40%);
-    }
-    .hero-gold-glow {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 50% 60% at 75% 35%, rgba(201,168,76,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      align-self: center;
-      padding-top: 11rem;
-      max-width: 700px;
-      position: relative; z-index: 1;
-    }
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.67rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-    }
-    .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(4.5rem, 11vw, 10.5rem);
-      line-height: 0.88; text-transform: uppercase; letter-spacing: -0.02em;
-      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-    }
-    .hero-title .outline {
-      -webkit-text-stroke: 1.5px rgba(245,240,232,0.35);
-      color: transparent;
-    }
-    .hero-title .gold { color: var(--gold); }
-    .hero-tagline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-style: italic; font-size: 1.55rem; font-weight: 300;
-      letter-spacing: 0.05em; color: var(--gold-light);
-      margin-top: 1.8rem;
-      opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
-    }
-    .hero-sub {
-      font-size: 1.05rem; font-weight: 300; line-height: 1.72;
-      color: rgba(245,240,232,0.55); max-width: 450px; margin-top: 1.3rem;
-      opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
-    }
-    .hero-ctas {
-      display: flex; gap: 1.2rem; align-items: center; margin-top: 2.8rem;
-      opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-    }
-    .btn-primary {
-      background: var(--gold); color: var(--black);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 1rem 2.2rem; text-decoration: none; display: inline-block;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover {
-      transform: translate(-3px,-3px);
-      box-shadow: 5px 5px 0 rgba(201,168,76,0.28);
-      background: var(--gold-light);
-    }
-    .btn-ghost {
-      font-family: 'Space Mono', monospace; font-size: 0.72rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--white); text-decoration: none;
-      display: flex; align-items: center; gap: 0.5rem;
-      opacity: 0.5; transition: opacity 0.2s;
-    }
-    .btn-ghost:hover { opacity: 1; }
-    .btn-ghost::after { content: '→'; color: var(--gold); }
-
-    .hero-stats {
-      display: flex; gap: 4rem;
-      padding: 2.5rem 0 4rem;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      opacity: 0; animation: fadeUp 0.8s 1s forwards;
-      position: relative; z-index: 1;
-    }
-    .stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 2.5rem; color: var(--gold); line-height: 1;
-    }
-    .stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-muted); margin-top: 0.3rem;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* MARQUEE */
-    .marquee-strip {
-      background: var(--gold); padding: 0.8rem 0; overflow: hidden; white-space: nowrap;
-    }
-    .marquee-inner { display: inline-flex; animation: marquee 22s linear infinite; }
-    .marquee-item {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--black); padding: 0 2.5rem;
-    }
-    .marquee-dot { color: rgba(10,10,10,0.3); }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    /* SECTIONS */
-    section { padding: 8rem 4rem; }
-    .section-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem; opacity: 0.8;
-    }
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.8rem, 5.5vw, 5rem);
-      text-transform: uppercase; line-height: 0.9; letter-spacing: -0.02em;
-    }
-    .section-title .outline {
-      -webkit-text-stroke: 1px rgba(245,240,232,0.28);
-      color: transparent;
-    }
-    .gold-line { width: 48px; height: 2px; background: var(--gold); margin: 2rem 0; }
-
-    /* ABOUT */
-    .about { background: var(--mid); position: relative; overflow: hidden; }
-    .about-deco {
-      position: absolute; bottom: -3rem; right: -2rem;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18rem;
-      color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,0.04);
-      line-height: 1; pointer-events: none; user-select: none;
-    }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 5rem;
-    }
-    .about-text p {
-      font-size: 1.05rem; line-height: 1.85; color: rgba(245,240,232,0.62); margin-bottom: 1.5rem;
-    }
-    .about-text p strong { color: var(--gold-light); font-weight: 500; }
-    .about-photo-wrap {
-      position: relative;
-    }
-    .about-photo {
-      width: 100%; aspect-ratio: 4/3;
-      object-fit: cover; object-position: center 20%;
-      display: block;
-      filter: saturate(0.85);
-    }
-    .about-photo-frame {
-      position: absolute; inset: 0;
-      border: 1px solid rgba(201,168,76,0.2);
-      pointer-events: none;
-    }
-    .about-photo-label {
-      position: absolute; bottom: -1px; left: -1px; right: -1px;
-      background: linear-gradient(to top, rgba(10,10,10,0.85), transparent);
-      padding: 2rem 1.5rem 1.2rem;
-    }
-    .about-photo-caption {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(245,240,232,0.5);
-    }
-
-    .mission-card {
-      background: var(--black);
-      border: 1px solid rgba(201,168,76,0.18);
-      padding: 2.5rem; position: relative; margin-top: 2rem;
-    }
-    .mission-card::before {
-      content: ''; position: absolute; top: -1px; left: 2rem;
-      width: 60px; height: 2px; background: var(--gold);
-    }
-    .mission-label {
-      font-family: 'Space Mono', monospace; font-size: 0.58rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem;
-    }
-    .mission-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.65rem; font-weight: 600; line-height: 1.35; color: var(--white);
-    }
-    .mission-text em { font-style: italic; color: var(--gold-light); }
-
-    /* SERVICES */
-    .services { background: var(--black); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; margin-top: 5rem;
-      background: rgba(201,168,76,0.08);
-    }
-    .service-card {
-      background: var(--black); padding: 3.5rem 2.8rem;
-      position: relative; overflow: hidden; transition: background 0.3s;
-    }
-    .service-card:hover { background: #0f0f0f; }
-    .service-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--gold); transition: width 0.45s ease;
-    }
-    .service-card:hover::after { width: 100%; }
-    .service-num {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 4.5rem; font-weight: 900;
-      color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,0.13);
-      line-height: 1; margin-bottom: 1.5rem;
-    }
-    .service-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 1.75rem; text-transform: uppercase;
-      letter-spacing: 0.01em; margin-bottom: 1rem; line-height: 1.05;
-    }
-    .service-desc { font-size: 0.92rem; line-height: 1.75; color: rgba(245,240,232,0.48); }
-    .service-detail {
-      margin-top: 1.8rem; display: flex; align-items: center; gap: 0.6rem;
-      font-family: 'Space Mono', monospace; font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); opacity: 0.75;
-    }
-    .service-detail::before { content: '◆'; font-size: 0.42rem; }
-
-    /* U20 INFO STRIP */
-    .u20-strip {
-      background: var(--mid);
-      border-top: 1px solid rgba(201,168,76,0.08);
-      border-bottom: 1px solid rgba(201,168,76,0.08);
-      padding: 2.8rem 4rem;
-    }
-    .u20-inner {
-      display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
-    }
-    .u20-icon { font-size: 1.4rem; opacity: 0.6; }
-    .u20-text-wrap {}
-    .u20-label {
-      font-family: 'Space Mono', monospace; font-size: 0.58rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem;
-    }
-    .u20-title {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      font-size: 1.2rem; text-transform: uppercase; color: var(--white); letter-spacing: 0.04em;
-    }
-    .u20-note {
-      font-size: 0.88rem; color: rgba(245,240,232,0.38); font-style: italic;
-      padding-left: 1.5rem;
-      border-left: 1px solid rgba(201,168,76,0.15);
-    }
-
-    /* GALLERY */
-    .gallery { background: var(--black); padding: 0; }
-    .gallery-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    }
-    .gallery-item {
-      position: relative; overflow: hidden;
-      aspect-ratio: 16/10;
-    }
-    .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s ease, filter 0.4s ease;
-      filter: saturate(0.8);
-    }
-    .gallery-item:hover img { transform: scale(1.04); filter: saturate(1); }
-    .gallery-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
-    }
-    .gallery-caption {
-      position: absolute; bottom: 1.5rem; left: 2rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(245,240,232,0.6);
-    }
-    .gallery-item:first-child { grid-row: span 1; }
-
-    /* MEDIA */
-    .media { background: var(--mid); }
-    .media-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; margin-top: 4rem;
-    }
-    .video-card {
-      position: relative; overflow: hidden;
-      background: var(--black);
-      border: 1px solid rgba(201,168,76,0.1);
-      aspect-ratio: 16/9;
-    }
-    .video-card iframe { width: 100%; height: 100%; border: none; display: block; }
-
-    /* PARTNERSHIP */
-    .partnership { background: var(--black); position: relative; overflow: hidden; }
-    .partnership-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;
-    }
-    .partnership-perks { margin-top: 3rem; display: flex; flex-direction: column; }
-    .perk {
-      display: flex; align-items: flex-start; gap: 1.5rem;
-      padding: 1.8rem 0; border-bottom: 1px solid rgba(201,168,76,0.08);
-    }
-    .perk:first-child { border-top: 1px solid rgba(201,168,76,0.08); }
-    .perk-num {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem;
-      color: var(--gold); min-width: 2rem; opacity: 0.45; padding-top: 0.15rem;
-    }
-    .perk-title {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-      font-size: 1.2rem; text-transform: uppercase; margin-bottom: 0.3rem;
-    }
-    .perk-desc { font-size: 0.87rem; color: rgba(245,240,232,0.42); line-height: 1.65; }
-    .partner-box {
-      background: var(--mid); border: 1px solid rgba(201,168,76,0.16);
-      padding: 3.5rem; text-align: center; position: relative;
-    }
-    .partner-box::before {
-      content: ''; position: absolute; top: 0; left: 2.5rem; right: 2.5rem;
-      height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .partner-box-label {
-      font-family: 'Space Mono', monospace; font-size: 0.58rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2.5rem;
-    }
-    .partner-icon-ring {
-      width: 100px; height: 100px; border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      margin: 0 auto 2.5rem;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.2rem; position: relative;
-    }
-    .partner-icon-ring::before {
-      content: ''; position: absolute; inset: -10px; border-radius: 50%;
-      border: 1px dashed rgba(201,168,76,0.2);
-      animation: spin 25s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .partner-box-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.4rem; font-weight: 600; line-height: 1.35;
-    }
-    .partner-box-sub {
-      font-size: 0.87rem; color: rgba(245,240,232,0.42); margin-top: 1rem; line-height: 1.65;
-    }
-    .partner-box .btn-primary { margin-top: 2.5rem; }
-
-    /* SOCIAL STRIP */
-    .social-strip {
-      background: var(--gold); padding: 4rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-    }
-    .social-tag {
-      font-family: 'Space Mono', monospace; font-size: 0.6rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: rgba(10,10,10,0.45); margin-bottom: 0.5rem;
-    }
-    .social-handle {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2rem, 5vw, 3.8rem);
-      text-transform: uppercase; color: var(--black);
-    }
-    .social-icons { display: flex; gap: 1rem; }
-    .social-btn {
-      background: rgba(10,10,10,0.1); border: 1px solid rgba(10,10,10,0.18);
-      color: var(--black); font-family: 'Space Mono', monospace;
-      font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 1rem 2rem; text-decoration: none;
-      display: flex; align-items: center; gap: 0.6rem; transition: background 0.2s;
-    }
-    .social-btn:hover { background: rgba(10,10,10,0.2); }
-
-    /* CONTACT */
-    .contact { background: var(--black); }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 5rem;
-    }
-    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-family: 'Space Mono', monospace; font-size: 0.58rem;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted);
-    }
-    .form-input {
-      background: var(--mid); border: 1px solid var(--grey);
-      color: var(--white); font-family: 'Barlow', sans-serif;
-      font-size: 1rem; font-weight: 300; padding: 1rem 1.2rem;
-      outline: none; transition: border-color 0.2s;
-    }
-    .form-input:focus { border-color: var(--gold); }
-    .form-input::placeholder { color: #444; }
-    textarea.form-input { resize: vertical; min-height: 120px; }
-    select.form-input { cursor: pointer; }
-    select.form-input option { background: var(--mid); }
-
-    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
-    .info-block { padding-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,0.08); }
-    .info-block:last-child { border-bottom: none; padding-bottom: 0; }
-    .info-label {
-      font-family: 'Space Mono', monospace; font-size: 0.58rem;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;
-    }
-    .info-value {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 600;
-    }
-    .info-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-    .info-value a:hover { color: var(--gold); }
-    .info-sub { font-size: 0.87rem; color: rgba(245,240,232,0.42); margin-top: 0.3rem; line-height: 1.65; }
-
-    /* FOOTER */
-    footer {
-      background: var(--mid); padding: 4rem;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem;
-    }
-    .footer-logo img {
-      height: 36px; width: auto; display: block; margin-bottom: 1rem; opacity: 0.9;
-    }
-    .footer-tagline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-style: italic; font-size: 1rem; color: var(--gold); letter-spacing: 0.05em;
-    }
-    .footer-right { text-align: right; }
-    .footer-copy {
-      font-family: 'Space Mono', monospace; font-size: 0.56rem;
-      letter-spacing: 0.1em; color: var(--text-muted);
-    }
-    .footer-links {
-      display: flex; gap: 2rem; justify-content: flex-end; margin-bottom: 1rem;
-    }
-    .footer-links a {
-      font-family: 'Space Mono', monospace; font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.22s; }
-    .reveal-delay-3 { transition-delay: 0.36s; }
-
-    /* Mobile */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      .nav-links { display: none; }
-      section { padding: 5rem 2rem; }
-      .hero { padding: 0 2rem; }
-      .hero-title { font-size: clamp(3.5rem, 14vw, 6rem); }
-      .hero-stats { gap: 2rem; flex-wrap: wrap; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .media-grid { grid-template-columns: 1fr; }
-      .u20-strip { padding: 2.5rem 2rem; }
-      .partnership-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .social-strip { flex-direction: column; align-items: flex-start; padding: 3rem 2rem; }
-      footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
-      .footer-right { text-align: left; }
-      .footer-links { justify-content: flex-start; }
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--gold-dim:rgba(201,168,76,0.15);--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform 0.15s ease,background 0.2s;transform:translate(-50%,-50%);}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform 0.35s ease,width 0.3s,height 0.3s,opacity 0.3s;transform:translate(-50%,-50%);opacity:0.4;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s,border-color 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:0 4rem;position:relative;overflow:hidden;}
+    .hero-bg-photo{position:absolute;inset:0;background:url("images/image1.jpg") center 30%/cover no-repeat;filter:brightness(0.22) saturate(0.6);}
+    .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.92) 45%,rgba(10,10,10,0.3) 100%),linear-gradient(to top,rgba(10,10,10,0.8) 0%,transparent 40%);}
+    .hero-gold-glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 75% 35%,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
+    .hero-content{align-self:center;padding-top:11rem;max-width:700px;position:relative;z-index:1;}
+    .hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+    .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(4.5rem,11vw,10.5rem);line-height:0.88;text-transform:uppercase;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
+    .hero-title .outline{-webkit-text-stroke:1.5px rgba(245,240,232,0.35);color:transparent;}
+    .hero-title .gold{color:var(--gold);}
+    .hero-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1.55rem;font-weight:300;letter-spacing:0.05em;color:var(--gold-light);margin-top:1.8rem;opacity:0;animation:fadeUp 0.8s 0.55s forwards;}
+    .hero-sub{font-size:1.05rem;font-weight:300;line-height:1.72;color:rgba(245,240,232,0.55);max-width:450px;margin-top:1.3rem;opacity:0;animation:fadeUp 0.8s 0.65s forwards;}
+    .hero-ctas{display:flex;gap:1.2rem;align-items:center;margin-top:2.8rem;opacity:0;animation:fadeUp 0.8s 0.8s forwards;}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+    .btn-ghost{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem;opacity:0.5;transition:opacity 0.2s;}
+    .btn-ghost:hover{opacity:1;}
+    .btn-ghost::after{content:'→';color:var(--gold);}
+    .hero-stats{display:flex;gap:4rem;padding:2.5rem 0 4rem;border-top:1px solid rgba(201,168,76,0.15);opacity:0;animation:fadeUp 0.8s 1s forwards;position:relative;z-index:1;}
+    .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.5rem;color:var(--gold);line-height:1;}
+    .stat-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+    .marquee-strip{background:var(--gold);padding:0.8rem 0;overflow:hidden;white-space:nowrap;}
+    .marquee-inner{display:inline-flex;animation:marquee 22s linear infinite;}
+    .marquee-item{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--black);padding:0 2.5rem;}
+    .marquee-dot{color:rgba(10,10,10,0.3);}
+    @keyframes marquee{to{transform:translateX(-50%);}}
+    section{padding:8rem 4rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .gold-line{width:48px;height:2px;background:var(--gold);margin:2rem 0;}
+    .about{background:var(--mid);position:relative;overflow:hidden;}
+    .about-deco{position:absolute;bottom:-3rem;right:-2rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18rem;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.04);line-height:1;pointer-events:none;user-select:none;}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:5rem;}
+    .about-text p{font-size:1.05rem;line-height:1.85;color:rgba(245,240,232,0.62);margin-bottom:1.5rem;}
+    .about-text p strong{color:var(--gold-light);font-weight:500;}
+    .about-photo-wrap{position:relative;}
+    .about-photo{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 20%;display:block;filter:saturate(0.85);}
+    .about-photo-frame{position:absolute;inset:0;border:1px solid rgba(201,168,76,0.2);pointer-events:none;}
+    .about-photo-label{position:absolute;bottom:-1px;left:-1px;right:-1px;background:linear-gradient(to top,rgba(10,10,10,0.85),transparent);padding:2rem 1.5rem 1.2rem;}
+    .about-photo-caption{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.5);}
+    .mission-card{background:var(--black);border:1px solid rgba(201,168,76,0.18);padding:2.5rem;position:relative;margin-top:2rem;}
+    .mission-card::before{content:'';position:absolute;top:-1px;left:2rem;width:60px;height:2px;background:var(--gold);}
+    .mission-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem;}
+    .mission-text{font-family:'Barlow Condensed',sans-serif;font-size:1.65rem;font-weight:600;line-height:1.35;color:var(--white);}
+    .mission-text em{font-style:italic;color:var(--gold-light);}
+    /* Page links strip */
+    .page-links{background:var(--mid);padding:5rem 4rem;border-top:1px solid rgba(201,168,76,0.08);}
+    .page-links-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:3rem;background:rgba(201,168,76,0.08);}
+    .page-link-card{background:var(--black);padding:2.5rem 2rem;text-decoration:none;color:var(--white);transition:background 0.3s;position:relative;overflow:hidden;}
+    .page-link-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.4s;}
+    .page-link-card:hover{background:#0f0f0f;}
+    .page-link-card:hover::after{width:100%;}
+    .page-link-num{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.12);line-height:1;margin-bottom:1rem;}
+    .page-link-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;text-transform:uppercase;margin-bottom:0.5rem;}
+    .page-link-desc{font-size:0.87rem;color:rgba(245,240,232,0.4);line-height:1.6;}
+    .page-link-arrow{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--gold);margin-top:1.5rem;letter-spacing:0.1em;}
+    /* Social */
+    .social-strip{background:var(--gold);padding:4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .social-tag{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,10,10,0.45);margin-bottom:0.5rem;}
+    .social-handle{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.8rem);text-transform:uppercase;color:var(--black);}
+    .social-icons{display:flex;gap:1rem;}
+    .social-btn{background:rgba(10,10,10,0.1);border:1px solid rgba(10,10,10,0.18);color:var(--black);font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:background 0.2s;}
+    .social-btn:hover{background:rgba(10,10,10,0.2);}
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);letter-spacing:0.05em;}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:2rem;justify-content:flex-end;margin-bottom:1rem;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.8s ease,transform 0.8s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}
+    .reveal-delay-2{transition-delay:0.22s;}
+    .reveal-delay-3{transition-delay:0.36s;}
+    @media(max-width:900px){
+      nav{padding:1.2rem 2rem;}.nav-links{display:none;}
+      section{padding:5rem 2rem;}.hero{padding:0 2rem;}
+      .hero-title{font-size:clamp(3.5rem,14vw,6rem);}
+      .hero-stats{gap:2rem;flex-wrap:wrap;}
+      .about-grid{grid-template-columns:1fr;gap:3rem;}
+      .page-links-grid{grid-template-columns:1fr 1fr;}
+      .social-strip{flex-direction:column;align-items:flex-start;padding:3rem 2rem;}
+      footer{grid-template-columns:1fr;padding:3rem 2rem;}
+      .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
     }
   </style>
 </head>
 <body>
-
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- NAV -->
   <nav id="mainNav">
-    <a href="#" class="nav-logo">
-      <img src="images/logo.png" alt="DC Ultimate Frisbee Academy" />
-    </a>
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#services">Programs</a></li>
-      <li><a href="#media">Media</a></li>
-      <li><a href="#partnership">Partnership</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="programmes.html">Programmes</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
@@ -575,20 +137,24 @@
         HIGHER.
       </h1>
       <p class="hero-tagline">Making the Ultimate Athlete.</p>
-      <p class="hero-sub">DC Ultimate Frisbee Academy develops elite youth players in Malaysia — from high school courts to the national stage.</p>
+      <p class="hero-sub">DC Ultimate Frisbee Academy develops youth players in Malaysia — building character, leadership and athletic excellence through the sport.</p>
       <div class="hero-ctas">
-        <a href="#services" class="btn-primary">Our Programs</a>
-        <a href="#contact" class="btn-ghost">Get In Touch</a>
+        <a href="programmes.html" class="btn-primary">Our Programmes</a>
+        <a href="contact.html" class="btn-ghost">Get In Touch</a>
       </div>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">U20</div>
-        <div class="stat-label">National Pipeline</div>
+        <div class="stat-num">2019</div>
+        <div class="stat-label">Est.</div>
       </div>
       <div>
         <div class="stat-num">3×</div>
-        <div class="stat-label">Programs</div>
+        <div class="stat-label">Annual Tournament</div>
+      </div>
+      <div>
+        <div class="stat-num">U20</div>
+        <div class="stat-label">National Level Coaches</div>
       </div>
       <div>
         <div class="stat-num">MY</div>
@@ -602,16 +168,16 @@
     <div class="marquee-inner">
       <span class="marquee-item">DC Ultimate Frisbee Academy</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Making the Ultimate Athlete</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Elite Youth Training</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Malaysia's National Pipeline</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Youth Development</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Spirit of the Game</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Leaders on and off the field</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">DC Ultimate Frisbee Academy</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Making the Ultimate Athlete</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Elite Youth Training</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Malaysia's National Pipeline</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Youth Development</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Spirit of the Game</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Leaders on and off the field</span><span class="marquee-dot">✦</span>
     </div>
   </div>
 
@@ -620,254 +186,60 @@
     <div class="about-deco">DC</div>
     <p class="section-tag reveal">// Who We Are</p>
     <h2 class="section-title reveal reveal-delay-1">
-      BUILT FOR<br><span class="outline">CHAMPIONS</span>
+      BUILDING<br><span class="outline">LEADERS</span>
     </h2>
     <div class="about-grid">
       <div class="about-text reveal reveal-delay-2">
-        <p>DC Ultimate Frisbee Academy was founded with a singular purpose: to <strong>grow Ultimate Frisbee in Malaysia</strong> by giving the next generation of players a structured, high-level environment to develop and compete.</p>
-        <p>We specialise in training <strong>high school students</strong> — bridging the gap between casual play and competitive excellence. Our coaching team brings deep knowledge of the game and a passion for developing not just athletes, but leaders who embody the Spirit of the Game.</p>
-        <p>Our academy is a recognised <strong>pipeline into the Malaysian U20 National Team</strong>, providing the training environment, tactical depth, and competitive exposure needed to represent the nation.</p>
+        <p>DC Ultimate Frisbee Academy was founded in 2019 with a singular belief — <strong>Ultimate Frisbee is one of the only sports in the world with no referee.</strong> Players govern themselves. That makes it a natural environment for developing leadership, integrity and accountability.</p>
+        <p>We don't just coach a sport. We use the sport to build young people who lead themselves — on the field and beyond it. Our coaches bring national-level experience and a genuine commitment to long-term athlete development.</p>
         <div class="mission-card">
-          <div class="mission-label">Our Mission</div>
-          <div class="mission-text">
-            To develop the <em>next generation</em> of Malaysian Ultimate players through elite coaching, school partnerships, and a culture built on <em>Spirit of the Game.</em>
-          </div>
+          <div class="mission-label">// Our Mission</div>
+          <div class="mission-text">We don't coach frisbee.<br><em>We use frisbee to build people<br>who lead themselves.</em></div>
         </div>
       </div>
       <div class="about-photo-wrap reveal reveal-delay-3">
-        <img class="about-photo" src="images/image3.jpg" alt="DC Ultimate Frisbee Academy team" />
+        <img class="about-photo" src="images/image3.jpg" alt="DC Ultimate Frisbee Academy training"/>
         <div class="about-photo-frame"></div>
         <div class="about-photo-label">
-          <div class="about-photo-caption">DC Ultimate Academy · Shark Alarm Open 2025</div>
+          <div class="about-photo-caption">DC Ultimate · Est. 2019 · Klang Valley, Malaysia</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PHOTO GALLERY -->
-  <div class="gallery">
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="images/image1.jpg" alt="Player in action at Shark Alarm Open 2025" />
-        <div class="gallery-overlay"></div>
-        <div class="gallery-caption">Shark Alarm Open 2025 · In Action</div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/image3.jpg" alt="DC Ultimate Frisbee Academy team" />
-        <div class="gallery-overlay"></div>
-        <div class="gallery-caption">DC Ultimate Academy · Team</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EVENTS -->
-  <section style="background:var(--black);padding:7rem 4rem;" id="events">
-    <p class="section-tag reveal">// What's Coming</p>
-    <h2 class="section-title reveal reveal-delay-1">UPCOMING<br><span class="outline">EVENTS</span></h2>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:4rem;">
-
-      <!-- Tournament -->
-      <div class="reveal reveal-delay-1" style="background:var(--mid);border:1px solid rgba(201,168,76,0.16);padding:2.5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Tournament</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;text-transform:uppercase;line-height:1.1;margin-bottom:1rem;">First Pull Ultimate Open 2026</div>
-        <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;margin-bottom:1.8rem;">Our annual high school ultimate frisbee tournament — the third iteration and biggest yet. Multiple schools, one field, real competition. Come play or come watch.</p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">📅 Saturday, 4 April 2026</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">📍 Kuala Lumpur, Malaysia</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">🎓 Open to High School Teams</div>
-        </div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.7;">Registration Closed · Participants Only</div>
-      </div>
-
-      <!-- Assessment Clinic -->
-      <div class="reveal reveal-delay-2" style="background:var(--mid);border:1px solid rgba(201,168,76,0.16);padding:2.5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
-        <img src="images/assessment_poster.png" alt="Assessment Clinic" style="width:100%;border-radius:4px;margin-bottom:1.5rem;display:block;" />
-        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Assessment · Open Registration</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;text-transform:uppercase;line-height:1.1;margin-bottom:1rem;">Assessment<br>Clinic</div>
-        <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;margin-bottom:1.8rem;">Chasing plastic discs isn't easy. Don't believe us? Try it. A 3-hour personalised skill and athleticism assessment — your entry point into DC Academy's Training Cohort #1. Limited spots.</p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">📅 Saturday, 11 April 2026</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">⏰ 10:00 AM – 1:00 PM</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">📍 W.O.S Subang Elite</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">💰 RM30 per participant</div>
-        </div>
-        <a href="https://forms.gle/bnsKABzC2yV6Ucjq6" target="_blank" style="display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:0.75rem 2rem;text-decoration:none;transition:background 0.2s;">Register Now →</a>
-      </div>
-
-      <!-- Training Cohort -->
-      <div class="reveal reveal-delay-3" style="background:var(--mid);border:1px solid rgba(201,168,76,0.16);padding:2.5rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
-        <img src="images/cohort_poster.png" alt="Training Cohort #1" style="width:100%;border-radius:4px;margin-bottom:1.5rem;display:block;" />
-        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Programme · Limited Slots</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;text-transform:uppercase;line-height:1.1;margin-bottom:1rem;">Training<br>Cohort #1</div>
-        <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;margin-bottom:1.8rem;">8 weeks. Real coaching. Real selection. DC Academy's first structured training cohort — designed for serious young athletes ready to develop their game.</p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">📅 Starts May 2026</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">⏱ 8 Weeks · Once Weekly</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">👥 12–20 Selected Athletes</div>
-          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(245,240,232,0.4);letter-spacing:0.08em;">💰 RM800 per cohort</div>
-        </div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(201,168,76,0.7);">Selection via Assessment Clinic · April 11</div>
-      </div>
-
-    </div>
-
-    <!-- FAQ -->
-    <div style="margin-top:4rem;max-width:720px;">
-      <p style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">// Frequently Asked</p>
-      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;text-transform:uppercase;margin-bottom:2.5rem;">COHORT FAQ</h3>
-
-      <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(201,168,76,0.12);">
-
-        <div style="padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">What is the Training Cohort?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">n 8-week structured training programme for serious young athletes who want to develop their Ultimate Frisbee skills under real coaching. Sessions are once weekly, 2 hours, run by DC Ultimate Frisbee Academy coaches with national level coaching experience, with a showcase game at the end of the Cohort.</p>
-        </div>
-
-        <div style="padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">How does the Assessment Clinic connect to the Cohort?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">The Assessment Clinic on April 11th is your entry point. We use it to get to know you — your athleticism, your coachability, your potential. Cohort offers go out after the clinic. Not everyone who attends will be offered a spot — that's what keeps the standard high.</p>
-        </div>
-
-        <div style="padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">Do I need experience to join?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">No prior Ultimate Frisbee experience needed. We're looking for athletes with the right attitude and willingness to be coached. Some sports background helps but isn't required. The clinic is open to players aged 12–19.</p>
-        </div>
-
-        <div style="padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">What does RM800 cover?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">8 weekly sessions of 2 hours each, personalised coaching feedback, and access to the national team pathway if selected at the end of the cohort.</p>
-        </div>
-
-        <div style="padding:1.5rem 0;border-bottom:1px solid rgba(201,168,76,0.12);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">What happens after the 8 weeks?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">Top performers are considered for the Malaysian U20 National Team pipeline. Graduates may also be invited to future cohorts at an advanced level.</p>
-        </div>
-
-        <div style="padding:1.5rem 0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:0.5rem;">Where do I start?</div>
-          <p style="font-size:0.87rem;color:rgba(245,240,232,0.5);line-height:1.7;">Register for the Assessment Clinic on April 11th. That's the only way in. <a href="https://forms.gle/bnsKABzC2yV6Ucjq6" target="_blank" style="color:var(--gold);text-decoration:none;">Sign up here →</a></p>
-        </div>
-
-      </div>
+  <!-- PAGE LINKS -->
+  <section class="page-links">
+    <p class="section-tag reveal">// Explore</p>
+    <h2 class="section-title reveal reveal-delay-1">WHAT WE<br><span class="outline">OFFER</span></h2>
+    <div class="page-links-grid">
+      <a href="programmes.html" class="page-link-card reveal reveal-delay-1">
+        <div class="page-link-num">01</div>
+        <div class="page-link-title">Programmes</div>
+        <div class="page-link-desc">School CCA partnerships, personal coaching and group training for youth players.</div>
+        <div class="page-link-arrow">Explore →</div>
+      </a>
+      <a href="events.html" class="page-link-card reveal reveal-delay-2">
+        <div class="page-link-num">02</div>
+        <div class="page-link-title">Events</div>
+        <div class="page-link-desc">Tournaments, clinics and competitions. DC Open 2026 — 3rd year running.</div>
+        <div class="page-link-arrow">Explore →</div>
+      </a>
+      <a href="schools.html" class="page-link-card reveal reveal-delay-3">
+        <div class="page-link-num">03</div>
+        <div class="page-link-title">Schools</div>
+        <div class="page-link-desc">Turnkey CCA programme for international and private schools across the Klang Valley.</div>
+        <div class="page-link-arrow">Explore →</div>
+      </a>
+      <a href="contact.html" class="page-link-card reveal reveal-delay-3">
+        <div class="page-link-num">04</div>
+        <div class="page-link-title">Contact</div>
+        <div class="page-link-desc">Get in touch about programmes, school partnerships or general enquiries.</div>
+        <div class="page-link-arrow">Enquire →</div>
+      </a>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <p class="section-tag reveal">// What We Offer</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      OUR<br><span class="outline">PROGRAMS</span>
-    </h2>
-    <div class="services-grid reveal reveal-delay-2">
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-title">School<br>Partnerships</div>
-        <p class="service-desc">We partner long-term with high schools across Malaysia to integrate Ultimate Frisbee into their sports programmes — handling coaching, curriculum, and competitive development from the ground up.</p>
-        <div class="service-detail">Ongoing · Long-Term Partnership</div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-title">Personal &amp;<br>Small Group</div>
-        <p class="service-desc">For players who want accelerated growth, our personal and small-group sessions deliver targeted skill-building — from throws and footwork to disc strategy and the mental side of the game.</p>
-        <div class="service-detail">Flexible Scheduling</div>
-      </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-title">On-Campus<br>Coaching</div>
-        <p class="service-desc">We bring certified coaches directly to your school to deliver structured, progressive training for student athletes — covering fundamentals all the way to competitive team tactics.</p>
-        <div class="service-detail">On-Campus · Custom Programme</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- U20 INFO NOTE -->
-  <div class="u20-strip">
-    <div class="u20-inner">
-      <div class="u20-icon">🏅</div>
-      <div class="u20-text-wrap">
-        <div class="u20-label">Community Contribution</div>
-        <div class="u20-title">Malaysia U20 National Team Training</div>
-      </div>
-      <div class="u20-note">DC Ultimate is involved in the Malaysian U20 training programme as part of our commitment to growing the sport and developing youth players toward national level competition.</div>
-    </div>
-  </div>
-
-  <!-- MEDIA -->
-  <section class="media" id="media">
-    <p class="section-tag reveal">// Watch &amp; Learn</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      SEE US<br><span class="outline">IN ACTION</span>
-    </h2>
-    <div class="media-grid reveal reveal-delay-2">
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/5AQrvVslUgs?si=aU1Dq1VmiE0B2i4x" title="DC Ultimate Frisbee Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/4_ZiHeesIdw?si=t05DkfV-W4uU1DEr" title="DC Ultimate Frisbee Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/2e4kEuPVSLE?si=tdrYklQPm94I4Pin" title="DC Ultimate Frisbee Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARTNERSHIP -->
-  <section class="partnership" id="partnership">
-    <div class="partnership-inner">
-      <div>
-        <p class="section-tag reveal">// Schools &amp; Institutions</p>
-        <h2 class="section-title reveal reveal-delay-1">
-          PARTNER<br><span class="outline">WITH US</span>
-        </h2>
-        <div class="gold-line reveal reveal-delay-1"></div>
-        <div class="partnership-perks reveal reveal-delay-2">
-          <div class="perk">
-            <span class="perk-num">01</span>
-            <div>
-              <div class="perk-title">Expert Coaching On Campus</div>
-              <p class="perk-desc">We bring experienced coaches directly to your school to run structured training for your students.</p>
-            </div>
-          </div>
-          <div class="perk">
-            <span class="perk-num">02</span>
-            <div>
-              <div class="perk-title">Curriculum &amp; Development</div>
-              <p class="perk-desc">A progressive framework from beginner fundamentals to competitive team tactics, tailored to your school's needs.</p>
-            </div>
-          </div>
-          <div class="perk">
-            <span class="perk-num">03</span>
-            <div>
-              <div class="perk-title">National Team Pathway</div>
-              <p class="perk-desc">Top-performing students gain exposure to national-level training — a clear path toward representing Malaysia.</p>
-            </div>
-          </div>
-          <div class="perk">
-            <span class="perk-num">04</span>
-            <div>
-              <div class="perk-title">Competitions &amp; Exposure</div>
-              <p class="perk-desc">We connect schools to local and national tournaments, giving students the competitive experience that drives growth.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-3">
-        <div class="partner-box">
-          <div class="partner-box-label">School Partnership Programme</div>
-          <div class="partner-icon-ring">🏫</div>
-          <div class="partner-box-text">Building the future of Malaysian Ultimate, one school at a time.</div>
-          <p class="partner-box-sub">We're actively seeking forward-thinking schools who want to give their students access to one of the world's fastest-growing sports — with a clear pathway to national competition.</p>
-          <a href="#contact" class="btn-primary">Enquire Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL STRIP -->
+  <!-- SOCIAL -->
   <div class="social-strip">
     <div>
       <div class="social-tag">Follow Our Journey</div>
@@ -885,107 +257,36 @@
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <p class="section-tag reveal">// Let's Connect</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      GET IN<br><span class="outline">TOUCH</span>
-    </h2>
-    <div class="contact-grid">
-      <div class="contact-form reveal reveal-delay-2">
-        <div class="form-group">
-          <label class="form-label" for="name">Full Name</label>
-          <input class="form-input" type="text" id="name" placeholder="Your name"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">Email Address</label>
-          <input class="form-input" type="email" id="email" placeholder="your@email.com"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="enquiry">Enquiry Type</label>
-          <select class="form-input" id="enquiry">
-            <option value="">Select an enquiry...</option>
-            <option value="school">School Partnership</option>
-            <option value="personal">Personal / Small Group Coaching</option>
-            <option value="general">General Enquiry</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="message">Message</label>
-          <textarea class="form-input" id="message" placeholder="Tell us about yourself or your school..."></textarea>
-        </div>
-        <button type="button" class="btn-primary" onclick="handleSubmit()" style="align-self:flex-start;">Send Message</button>
-      </div>
-      <div class="contact-info reveal reveal-delay-3">
-        <div class="info-block">
-          <div class="info-label">Contact Person</div>
-          <div class="info-value">Kieran</div>
-          <div class="info-sub">DC Ultimate Frisbee Academy</div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">Phone / WhatsApp</div>
-          <div class="info-value"><a href="tel:+60173121033">017-312 1033</a></div>
-          <div class="info-sub">WhatsApp preferred for quick enquiries.</div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">Email</div>
-          <div class="info-value"><a href="/cdn-cgi/l/email-protection#7d191e08110914101c09181b0f140e1f18181e11081f3d1a101c1411531e1210"><span class="__cf_email__" data-cfemail="0b6f687e677f62666a7f6e6d796278696e6e68677e694b6c666a626725686466">[email&#160;protected]</span></a></div>
-          <div class="info-sub">We'll get back to you within 1–2 business days.</div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">Instagram</div>
-          <div class="info-value"><a href="https://www.instagram.com/dcultiacademy" target="_blank" rel="noopener">@dcultiacademy</a></div>
-          <div class="info-sub">Follow us for training updates and news.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div>
-      <div class="footer-logo">
-        <img src="images/logo.png" alt="DC Ultimate Frisbee Academy" />
-      </div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
       <div class="footer-tagline">Making the Ultimate Athlete.</div>
     </div>
     <div class="footer-right">
       <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#events">Events</a>
-        <a href="#services">Programs</a>
-        <a href="#media">Media</a>
-        <a href="#partnership">Partnership</a>
-        <a href="#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="events.html">Events</a>
+        <a href="schools.html">Schools</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
     let mx=0,my=0,rx=0,ry=0;
     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
     function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
     animRing();
-    document.querySelectorAll('a,button,.service-card,.gallery-item').forEach(el=>{
+    document.querySelectorAll('a,button,.page-link-card').forEach(el=>{
       el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
       el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
     });
     document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
     const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-    function handleSubmit(){
-      const name=document.getElementById('name').value.trim();
-      const email=document.getElementById('email').value.trim();
-      const enquiry=document.getElementById('enquiry').value;
-      const message=document.getElementById('message').value.trim();
-      if(!name||!email){alert('Please fill in your name and email.');return;}
-      const subject=encodeURIComponent('DC Ultimate Academy Enquiry: '+(enquiry||'General'))
-      const mailto = `mailto:dcultimatefrisbeeacademy@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
-    }
   </script>
 </body>
 </html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programmes | DC Ultimate Frisbee Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--gold-dim:rgba(201,168,76,0.15);--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform 0.15s,background 0.2s;transform:translate(-50%,-50%);}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform 0.35s,width 0.3s,height 0.3s,opacity 0.3s;transform:translate(-50%,-50%);opacity:0.4;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:0 4rem 5rem;position:relative;background:var(--mid);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--mid) 0%,rgba(20,20,20,0.3) 100%);}
+    .page-hero-content{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7rem);text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards;}
+    .page-title .outline{-webkit-text-stroke:1.5px rgba(245,240,232,0.3);color:transparent;}
+    .page-title .gold{color:var(--gold);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    section{padding:8rem 4rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .gold-line{width:48px;height:2px;background:var(--gold);margin:2rem 0;}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+    /* Services grid */
+    .services{background:var(--black);}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:5rem;background:rgba(201,168,76,0.08);}
+    .service-card{background:var(--black);padding:3.5rem 2.8rem;position:relative;overflow:hidden;transition:background 0.3s;}
+    .service-card:hover{background:#0f0f0f;}
+    .service-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.45s;}
+    .service-card:hover::after{width:100%;}
+    .service-num{font-family:'Barlow Condensed',sans-serif;font-size:4.5rem;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,0.13);line-height:1;margin-bottom:1.5rem;}
+    .service-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.75rem;text-transform:uppercase;letter-spacing:0.01em;margin-bottom:1rem;line-height:1.05;}
+    .service-desc{font-size:0.92rem;line-height:1.75;color:rgba(245,240,232,0.48);}
+    .service-detail{margin-top:1.8rem;display:flex;align-items:center;gap:0.6rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.75;}
+    .service-detail::before{content:'◆';font-size:0.42rem;}
+    /* Session breakdown */
+    .session{background:var(--mid);}
+    .session-steps{margin-top:4rem;display:flex;flex-direction:column;gap:0;}
+    .step{display:flex;gap:3rem;align-items:flex-start;padding:2.5rem 0;border-bottom:1px solid rgba(201,168,76,0.08);}
+    .step:first-child{border-top:1px solid rgba(201,168,76,0.08);}
+    .step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:var(--gold);opacity:0.25;min-width:3rem;line-height:1;}
+    .step-body{}
+    .step-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:0.4rem;}
+    .step-desc{font-size:0.92rem;line-height:1.75;color:rgba(245,240,232,0.48);}
+    /* Pricing */
+    .pricing{background:var(--black);}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:5rem;}
+    .price-card{background:var(--mid);border:1px solid rgba(201,168,76,0.12);padding:3rem;position:relative;}
+    .price-card.featured{border-color:var(--gold);}
+    .price-card.featured::before{content:'MOST POPULAR';position:absolute;top:-1px;left:2rem;background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;padding:0.3rem 0.8rem;}
+    .price-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;}
+    .price-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.8rem;text-transform:uppercase;margin-bottom:0.5rem;}
+    .price-amount{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:var(--gold);line-height:1;margin-bottom:0.3rem;}
+    .price-per{font-size:0.82rem;color:var(--text-muted);margin-bottom:2rem;}
+    .price-features{list-style:none;display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem;}
+    .price-features li{font-size:0.9rem;color:rgba(245,240,232,0.55);display:flex;gap:0.6rem;}
+    .price-features li::before{content:'✓';color:var(--gold);flex-shrink:0;}
+    /* U20 strip */
+    .u20-strip{background:var(--mid);border-top:1px solid rgba(201,168,76,0.08);border-bottom:1px solid rgba(201,168,76,0.08);padding:2.8rem 4rem;}
+    .u20-inner{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+    .u20-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;}
+    .u20-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;}
+    .u20-note{font-size:0.88rem;color:rgba(245,240,232,0.38);font-style:italic;padding-left:1.5rem;border-left:1px solid rgba(201,168,76,0.15);}
+    /* Social/Footer */
+    .social-strip{background:var(--gold);padding:4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+    .social-tag{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,10,10,0.45);margin-bottom:0.5rem;}
+    .social-handle{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.8rem);text-transform:uppercase;color:var(--black);}
+    .social-icons{display:flex;gap:1rem;}
+    .social-btn{background:rgba(10,10,10,0.1);border:1px solid rgba(10,10,10,0.18);color:var(--black);font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:background 0.2s;}
+    .social-btn:hover{background:rgba(10,10,10,0.2);}
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);letter-spacing:0.05em;}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:2rem;justify-content:flex-end;margin-bottom:1rem;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.8s,transform 0.8s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}
+    .reveal-delay-2{transition-delay:0.22s;}
+    .reveal-delay-3{transition-delay:0.36s;}
+    @media(max-width:900px){
+      nav{padding:1.2rem 2rem;}.nav-links{display:none;}
+      .page-hero{padding:0 2rem 4rem;}
+      section{padding:5rem 2rem;}
+      .services-grid{grid-template-columns:1fr;}
+      .pricing-grid{grid-template-columns:1fr;}
+      .social-strip{flex-direction:column;align-items:flex-start;padding:3rem 2rem;}
+      footer{grid-template-columns:1fr;padding:3rem 2rem;}
+      .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="programmes.html" class="active">Programmes</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-eyebrow">// What We Offer</p>
+      <h1 class="page-title">OUR<br><span class="gold">PROGRAMMES</span></h1>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <p class="section-tag reveal">// Training Options</p>
+    <h2 class="section-title reveal reveal-delay-1">BUILT FOR<br><span class="outline">EVERY LEVEL</span></h2>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <div class="service-title">School CCA Programme</div>
+        <div class="service-desc">A structured weekly programme delivered directly to your school. We handle coaching, curriculum and session planning — minimal workload for staff. Suitable for beginners through to developing players.</div>
+        <div class="service-detail">Term-based · Weekly sessions</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-title">Personal Coaching</div>
+        <div class="service-desc">One-on-one development sessions tailored to your specific goals — whether you're just starting out or refining your game for competitive play. Disc skills, movement, game reading and leadership development.</div>
+        <div class="service-detail">Flexible scheduling · All levels</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">03</div>
+        <div class="service-title">Group & Team Training</div>
+        <div class="service-desc">Structured group sessions for teams, school groups or community clubs. Ideal for players who want to develop together in a competitive and collaborative environment.</div>
+        <div class="service-detail">Min. 6 players · Weekly or fortnightly</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- U20 STRIP -->
+  <div class="u20-strip">
+    <div style="font-size:1.4rem;opacity:0.6;">🎓</div>
+    <div class="u20-text-wrap">
+      <div class="u20-label">// Coaching Credentials</div>
+      <div class="u20-title">Coaches with National Level Experience</div>
+    </div>
+    <div class="u20-note">Our coaches bring experience from the Malaysian U20 programme, providing students with national-level coaching methodology and standards.</div>
+  </div>
+
+  <!-- SESSION BREAKDOWN -->
+  <section class="session">
+    <p class="section-tag reveal">// Session Structure</p>
+    <h2 class="section-title reveal reveal-delay-1">A TYPICAL<br><span class="outline">SESSION</span></h2>
+    <p style="margin-top:1.5rem;font-size:1.05rem;color:rgba(245,240,232,0.55);max-width:500px;" class="reveal reveal-delay-2">Every 50–60 minute session follows a progressive structure — building fitness, technical skill and game intelligence simultaneously.</p>
+    <div class="session-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">Dynamic Warm-Up & Movement Prep</div>
+          <div class="step-desc">Sport-specific warm-up activating the hips, shoulders and footwork patterns used in Ultimate Frisbee.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">Technical Skill Development</div>
+          <div class="step-desc">Throwing mechanics, cutting patterns, defensive positioning — broken down and drilled progressively.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Game-Based Drills & Tactical Application</div>
+          <div class="step-desc">Skills applied in game-like scenarios — developing decision-making, communication and team coordination.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">Small-Sided Gameplay</div>
+          <div class="step-desc">Competitive play in smaller formats — fast-paced, high-touch and self-officiated to build game intelligence.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-title">Reflection & Debrief</div>
+          <div class="step-desc">Short team reflection on what was learned — reinforcing Spirit of the Game principles and leadership habits.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <p class="section-tag reveal">// Fees</p>
+    <h2 class="section-title reveal reveal-delay-1">TRANSPARENT<br><span class="outline">PRICING</span></h2>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-delay-1">
+        <div class="price-label">School CCA Programme</div>
+        <div class="price-title">Per Student</div>
+        <div class="price-amount">RM35–50</div>
+        <div class="price-per">per student · per session</div>
+        <ul class="price-features">
+          <li>Larger groups attract lower per-student rates</li>
+          <li>Minimum 14 students, ideal 20</li>
+          <li>All equipment provided</li>
+          <li>Progressive curriculum included</li>
+          <li>Custom quote provided after trial session</li>
+        </ul>
+        <a href="schools.html" class="btn-primary">School Enquiry</a>
+      </div>
+      <div class="price-card featured reveal reveal-delay-2">
+        <div class="price-label">Personal & Group Coaching</div>
+        <div class="price-title">Contact for Rate</div>
+        <div class="price-amount">Tailored</div>
+        <div class="price-per">based on frequency & group size</div>
+        <ul class="price-features">
+          <li>1-on-1 or small group sessions</li>
+          <li>Flexible scheduling around your calendar</li>
+          <li>Goal-oriented training plan</li>
+          <li>Suitable for beginners to competitive players</li>
+          <li>Trial session available</li>
+        </ul>
+        <a href="contact.html" class="btn-primary">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-strip">
+    <div>
+      <div class="social-tag">Follow Our Journey</div>
+      <div class="social-handle">@dcultiacademy</div>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/dcultiacademy" target="_blank" rel="noopener" class="social-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
+      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="events.html">Events</a>
+        <a href="schools.html">Schools</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+    animRing();
+    document.querySelectorAll('a,button,.service-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
+    });
+    document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>

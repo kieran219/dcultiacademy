@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events | DC Ultimate Frisbee Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s,background 0.2s;}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.4;transition:transform 0.35s,width 0.3s,height 0.3s,opacity 0.3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:0 4rem 5rem;position:relative;background:var(--mid);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--mid),rgba(20,20,20,0.3));}
+    .page-hero-content{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7rem);text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards;}
+    .page-title .gold{color:var(--gold);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    section{padding:8rem 4rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+    .events-section{background:var(--black);}
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
+    .event-card{background:var(--mid);border:1px solid rgba(201,168,76,0.1);padding:2.5rem;position:relative;transition:border-color 0.3s;}
+    .event-card:hover{border-color:rgba(201,168,76,0.3);}
+    .event-card.featured{border-color:var(--gold);}
+    .event-card.featured::before{content:'UPCOMING';position:absolute;top:-1px;left:1.5rem;background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;padding:0.3rem 0.8rem;}
+    .event-date{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:1rem;}
+    .event-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;text-transform:uppercase;line-height:1.05;margin-bottom:0.8rem;}
+    .event-desc{font-size:0.9rem;line-height:1.7;color:rgba(245,240,232,0.48);margin-bottom:1.5rem;}
+    .event-meta{display:flex;flex-direction:column;gap:0.4rem;}
+    .event-meta-item{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--text-muted);display:flex;gap:0.5rem;}
+    .event-meta-item span{color:rgba(245,240,232,0.55);}
+    .past-section{background:var(--mid);}
+    .past-list{margin-top:4rem;display:flex;flex-direction:column;}
+    .past-item{display:flex;align-items:center;gap:3rem;padding:2rem 0;border-bottom:1px solid rgba(201,168,76,0.08);}
+    .past-item:first-child{border-top:1px solid rgba(201,168,76,0.08);}
+    .past-year{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--gold);opacity:0.25;min-width:4rem;}
+    .past-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;text-transform:uppercase;}
+    .past-desc{font-size:0.87rem;color:rgba(245,240,232,0.4);margin-top:0.2rem;}
+    .past-badge{margin-left:auto;font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;background:rgba(201,168,76,0.1);color:var(--gold);padding:0.4rem 0.8rem;white-space:nowrap;}
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:2rem;justify-content:flex-end;margin-bottom:1rem;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.8s,transform 0.8s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.22s;}.reveal-delay-3{transition-delay:0.36s;}
+    @media(max-width:900px){nav{padding:1.2rem 2rem;}.nav-links{display:none;}.page-hero{padding:0 2rem 4rem;}section{padding:5rem 2rem;}.events-grid{grid-template-columns:1fr;}.past-item{flex-wrap:wrap;gap:1rem;}.past-badge{margin-left:0;}footer{grid-template-columns:1fr;padding:3rem 2rem;}.footer-right{text-align:left;}.footer-links{justify-content:flex-start;}}
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="programmes.html">Programmes</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-eyebrow">// Competitions & Clinics</p>
+      <h1 class="page-title">EVENTS &<br><span class="gold">TOURNAMENTS</span></h1>
+    </div>
+  </div>
+  <section class="events-section">
+    <p class="section-tag reveal">// What's Coming</p>
+    <h2 class="section-title reveal reveal-delay-1">UPCOMING<br><span class="outline">EVENTS</span></h2>
+    <div class="events-grid">
+      <div class="event-card featured reveal reveal-delay-1">
+        <div class="event-date">June 2026 · Klang Valley</div>
+        <div class="event-title">Assessment Clinic</div>
+        <div class="event-desc">Our personalised skills assessment session for players looking to understand where they are and get a clear development pathway. Open to all levels.</div>
+        <div class="event-meta">
+          <div class="event-meta-item">Format: <span>Individual assessment · 3 hours</span></div>
+          <div class="event-meta-item">Who: <span>Secondary school players</span></div>
+          <div class="event-meta-item">Date: <span>To be confirmed</span></div>
+        </div>
+      </div>
+      <div class="event-card featured reveal reveal-delay-2">
+        <div class="event-date">June–July 2026 · KL</div>
+        <div class="event-title">Training Cohort</div>
+        <div class="event-desc">8-week structured training cohort for committed players. Progressive curriculum covering fundamentals, team tactics, leadership and competitive exposure.</div>
+        <div class="event-meta">
+          <div class="event-meta-item">Duration: <span>8 weeks · 2× per week</span></div>
+          <div class="event-meta-item">Who: <span>Ages 14–19</span></div>
+          <div class="event-meta-item">Date: <span>To be confirmed</span></div>
+        </div>
+      </div>
+      <div class="event-card reveal reveal-delay-3">
+        <div class="event-date">Ongoing · 2026</div>
+        <div class="event-title">School Pilot Programme</div>
+        <div class="event-desc">DC Ultimate is rolling out school pilot programmes across international schools in the Klang Valley. Contact us to find out if your school is eligible.</div>
+        <div class="event-meta">
+          <div class="event-meta-item">Format: <span>4-week trial or full term</span></div>
+          <div class="event-meta-item">Who: <span>Schools · Ages 12–17</span></div>
+          <div class="event-meta-item">Enquiry: <span>Contact us</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="past-section">
+    <p class="section-tag reveal">// Track Record</p>
+    <h2 class="section-title reveal reveal-delay-1">PAST<br><span class="outline">EVENTS</span></h2>
+    <div class="past-list">
+      <div class="past-item reveal">
+        <div class="past-year">2026</div>
+        <div>
+          <div class="past-title">First Pull Ultimate Open — 3rd Year</div>
+          <div class="past-desc">Annual high school Ultimate Frisbee tournament. 11+ teams, multiple schools, Taylor's Puchong.</div>
+        </div>
+        <div class="past-badge">3rd Year Running</div>
+      </div>
+      <div class="past-item reveal">
+        <div class="past-year">2025</div>
+        <div>
+          <div class="past-title">First Pull Ultimate Open — 2nd Year</div>
+          <div class="past-desc">Growing the Klang Valley high school frisbee community one tournament at a time.</div>
+        </div>
+        <div class="past-badge">Annual Tournament</div>
+      </div>
+      <div class="past-item reveal">
+        <div class="past-year">2024</div>
+        <div>
+          <div class="past-title">First Pull Ultimate Open — Inaugural</div>
+          <div class="past-desc">DC's first open high school tournament — the beginning of an annual tradition.</div>
+        </div>
+        <div class="past-badge">Inaugural Event</div>
+      </div>
+      <div class="past-item reveal">
+        <div class="past-year">2019</div>
+        <div>
+          <div class="past-title">UltiAsia High School Championship</div>
+          <div class="past-desc">DC-coached team defeated competitors across Malaysia and the Philippines — our first major competitive milestone.</div>
+        </div>
+        <div class="past-badge">Champions</div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
+      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="programmes.html">Programmes</a><a href="events.html">Events</a><a href="schools.html">Schools</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
+    </div>
+  </footer>
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+    animRing();
+    document.querySelectorAll('a,button,.event-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
+    });
+    document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>
