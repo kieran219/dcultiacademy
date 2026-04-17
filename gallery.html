@@ -62,7 +62,7 @@
     .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:1.2rem;padding:1rem 1.4rem;cursor:pointer;transition:all 0.2s;font-family:'Space Mono',monospace;}
     .lightbox-prev{left:2rem;}.lightbox-next{right:2rem;}
     .lightbox-prev:hover,.lightbox-next:hover{background:rgba(201,168,76,0.1);}
-    .lightbox-caption{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(245,240,232,0.4);white-space:nowrap;}
+    .lightbox-caption{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(245,240,232,0.3);}
     footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
     .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
     .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);}
@@ -121,42 +121,38 @@
       <div class="album-header">
         <div>
           <div class="album-title">First Pull Ultimate Open 2026</div>
-          <div class="album-meta">April 2026 · Taylor's Puchong · 11+ Teams</div>
+          <div class="album-meta">April 2026 · Taylor's Puchong · 11+ Teams · 3rd Year Running</div>
         </div>
-        <!-- Replace # with actual Google Drive shared folder link -->
-        <a href="#" class="album-drive" target="_blank" rel="noopener">View All Photos →</a>
+        <a href="https://drive.google.com/drive/u/2/folders/1Dvt94DKMjG5LGHkto7o4Lc-SgX82UTW2" class="album-drive" target="_blank" rel="noopener">View Full Album →</a>
       </div>
-      <!-- TO ADD PHOTOS: Replace placeholder divs with:
-           <div class="photo-item" onclick="openLightbox('images/open26_01.jpg','First Pull Open 2026',0)">
-             <img src="images/open26_01.jpg" alt="First Pull Open 2026"/>
-             <div class="photo-overlay"><div class="photo-zoom">⊕</div></div>
-           </div>
-      -->
-      <div class="album-placeholder">
-        <div class="placeholder-icon">📸</div>
-        <div class="placeholder-text">Photos Coming Soon</div>
-        <div class="placeholder-sub">Add highlight images from the DC Open 2026 here</div>
+      <div class="photo-grid large-first">
+        <div class="photo-item" onclick="openLightbox(0,'open26')"><img src="images/fpuo_01.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(1,'open26')"><img src="images/fpuo_02.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(2,'open26')"><img src="images/fpuo_03.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(3,'open26')"><img src="images/fpuo_04.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(4,'open26')"><img src="images/fpuo_05.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(5,'open26')"><img src="images/fpuo_06.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(6,'open26')"><img src="images/fpuo_07.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(7,'open26')"><img src="images/fpuo_08.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(8,'open26')"><img src="images/fpuo_09.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(9,'open26')"><img src="images/fpuo_10.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(10,'open26')"><img src="images/fpuo_11.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
+        <div class="photo-item" onclick="openLightbox(11,'open26')"><img src="images/fpuo_12.jpg" alt="First Pull Ultimate Open 2026"/><div class="photo-overlay"><div class="photo-zoom">⊕</div></div></div>
       </div>
     </div>
 
-    <!-- ALBUM: Training Sessions -->
+    <!-- ALBUM: Training Sessions — placeholder until filming permission obtained -->
     <div class="album visible" data-album="training" id="album-training">
       <div class="album-header">
         <div>
           <div class="album-title">Training Sessions</div>
-          <div class="album-meta">Ongoing · Calvary ERC · Klang Valley</div>
+          <div class="album-meta">Ongoing · Klang Valley</div>
         </div>
       </div>
-      <div class="photo-grid large-first">
-        <div class="photo-item" onclick="openLightbox('images/image1.jpg','Training — DC Ultimate Frisbee Academy',0,'training')">
-          <img src="images/image1.jpg" alt="DC Ultimate training session"/>
-          <div class="photo-overlay"><div class="photo-zoom">⊕</div></div>
-        </div>
-        <div class="photo-item" onclick="openLightbox('images/image3.jpg','Training — DC Ultimate Frisbee Academy',1,'training')">
-          <img src="images/image3.jpg" alt="DC Ultimate training"/>
-          <div class="photo-overlay"><div class="photo-zoom">⊕</div></div>
-        </div>
-        <!-- Add more photos as they come in -->
+      <div class="album-placeholder">
+        <div class="placeholder-icon">📸</div>
+        <div class="placeholder-text">Photos Coming Soon</div>
+        <div class="placeholder-sub">Training session photos will be added here</div>
       </div>
     </div>
 
@@ -204,46 +200,48 @@
     }
 
     // Lightbox
-    let currentPhotos=[];
-    let currentIdx=0;
+    const albums = {
+      'open26': [
+        'images/fpuo_01.jpg','images/fpuo_02.jpg','images/fpuo_03.jpg',
+        'images/fpuo_04.jpg','images/fpuo_05.jpg','images/fpuo_06.jpg',
+        'images/fpuo_07.jpg','images/fpuo_08.jpg','images/fpuo_09.jpg',
+        'images/fpuo_10.jpg','images/fpuo_11.jpg','images/fpuo_12.jpg'
+      ]
+    };
+    let currentAlbum = [], currentIdx = 0;
 
-    function openLightbox(src,caption,idx,albumId){
-      // Collect all photos from the same album
-      const albumEl=document.getElementById('album-'+albumId);
-      if(albumEl){
-        const imgs=albumEl.querySelectorAll('.photo-item img');
-        currentPhotos=Array.from(imgs).map((img,i)=>({src:img.src,caption:img.alt}));
-      } else {
-        currentPhotos=[{src,caption}];
-      }
-      currentIdx=idx;
+    function openLightbox(idx, albumId) {
+      currentAlbum = albums[albumId] || [];
+      currentIdx = idx;
       showPhoto();
       document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow='hidden';
+      document.body.style.overflow = 'hidden';
     }
 
-    function showPhoto(){
-      const p=currentPhotos[currentIdx];
-      document.getElementById('lightboxImg').src=p.src;
-      document.getElementById('lightboxCaption').textContent=p.caption+(currentPhotos.length>1?' · '+(currentIdx+1)+' / '+currentPhotos.length:'');
+    function showPhoto() {
+      document.getElementById('lightboxImg').src = currentAlbum[currentIdx];
+      document.getElementById('lightboxCaption').textContent =
+        (currentIdx + 1) + ' / ' + currentAlbum.length;
     }
 
-    function changePhoto(dir){
-      currentIdx=(currentIdx+dir+currentPhotos.length)%currentPhotos.length;
+    function changePhoto(dir) {
+      currentIdx = (currentIdx + dir + currentAlbum.length) % currentAlbum.length;
       showPhoto();
     }
 
-    function closeLightbox(){
+    function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow='';
+      document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape')closeLightbox();
-      if(e.key==='ArrowLeft')changePhoto(-1);
-      if(e.key==='ArrowRight')changePhoto(1);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changePhoto(-1);
+      if (e.key === 'ArrowRight') changePhoto(1);
     });
-    document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLightbox();});
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
   </script>
 </body>
 </html>
