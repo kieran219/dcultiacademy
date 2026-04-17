@@ -32,11 +32,10 @@
     .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
     .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
 
-    /* ── FEATURED CARD (Masayu — parent/teacher) ── */
+    /* ── FEATURED CARD (Masayu — parent/teacher, text only) ── */
     .featured-section{background:var(--black);}
     .featured-card{
-      display:grid;grid-template-columns:1fr 1fr;
-      gap:0;margin-top:4rem;
+      margin-top:4rem;
       border:1px solid rgba(201,168,76,0.15);
       position:relative;overflow:hidden;
     }
@@ -47,21 +46,9 @@
       font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;
       padding:0.35rem 1rem;z-index:2;
     }
-    .featured-img{
-      position:relative;overflow:hidden;min-height:400px;
-    }
-    .featured-img img{
-      width:100%;height:100%;object-fit:cover;object-position:center top;
-      filter:saturate(0.85);transition:transform 0.6s,filter 0.4s;
-    }
-    .featured-card:hover .featured-img img{transform:scale(1.03);filter:saturate(1);}
-    .featured-img-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to right,transparent 60%,rgba(10,10,10,0.4) 100%);
-    }
     .featured-body{
-      background:var(--mid);padding:4rem;
-      display:flex;flex-direction:column;justify-content:center;
+      background:var(--mid);padding:5rem 6rem;
+      display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
     }
     .quote-mark{
       font-family:'Barlow Condensed',sans-serif;font-weight:900;
@@ -122,25 +109,6 @@
       font-size:1.2rem;text-transform:uppercase;color:var(--gold);
     }
     .student-school{font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;}
-
-    /* ── ADDITIONAL QUOTES (text only) ── */
-    .quotes-section{background:var(--black);}
-    .quotes-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:1px;margin-top:4rem;
-      background:rgba(201,168,76,0.08);
-    }
-    .quote-card{
-      background:var(--black);padding:3rem 2.5rem;
-      position:relative;transition:background 0.3s;
-    }
-    .quote-card:hover{background:#0f0f0f;}
-    .quote-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.4s;}
-    .quote-card:hover::after{width:100%;}
-    .qc-mark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:var(--gold);opacity:0.18;line-height:0.8;margin-bottom:1rem;}
-    .qc-text{font-size:0.95rem;line-height:1.78;color:rgba(245,240,232,0.55);margin-bottom:2rem;}
-    .qc-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;color:var(--gold);}
-    .qc-school{font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;}
 
     /* ── CTA ── */
     .cta-section{
@@ -210,18 +178,18 @@
     <p class="section-tag reveal">// Parent & Teacher Perspective</p>
     <h2 class="section-title reveal reveal-delay-1">THE MOST<br><span class="outline">POWERFUL VOICE</span></h2>
     <div class="featured-card reveal reveal-delay-2">
-      <div class="featured-img">
-        <img src="images/testi_masayu.jpg" alt="Masayu Zahrah testimonial"/>
-        <div class="featured-img-overlay"></div>
-      </div>
       <div class="featured-body">
-        <div class="quote-mark">"</div>
-        <div class="featured-quote">
-          I'm very fortunate to have Coach Kieran as my coach. As a teacher myself, I'm very impressed on the very first day with how he communicates with the students. He poses questions and then gives explanations very clearly. He's respectful regardless of age and always gives positive encouragement.<br><br>
-          His lessons are always exciting, interesting and he makes us feel like he's one of the students while at the same time ensuring we meet both our expectations. <em>I'm learning how to be a better teacher at the same time.</em>
+        <div>
+          <div class="quote-mark">"</div>
+          <div class="featured-quote">
+            I'm very fortunate to have Coach Kieran as my coach. As a teacher myself, I'm very impressed on the very first day with how he communicates with the students. He poses questions and then gives explanations very clearly. He's respectful regardless of age and always gives positive encouragement.<br><br>
+            His lessons are always exciting, interesting and he makes us feel like he's one of the students while at the same time ensuring we meet both our expectations. <em>I'm learning how to be a better teacher at the same time.</em>
+          </div>
         </div>
-        <div class="testi-name">Masayu Zahrah</div>
-        <div class="testi-role">Rafiq's Mother · Teacher</div>
+        <div>
+          <div class="testi-name">Masayu Zahrah</div>
+          <div class="testi-role">Rafiq's Mother · Teacher</div>
+        </div>
       </div>
     </div>
   </section>
@@ -260,36 +228,6 @@
           <div class="student-name">Matthias Lim, 16</div>
           <div class="student-school">Sri Sempurna International School</div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MORE TESTIMONIALS — text only -->
-  <section class="quotes-section">
-    <p class="section-tag reveal">// More Voices</p>
-    <h2 class="section-title reveal reveal-delay-1">MORE FROM<br><span class="outline">OUR COMMUNITY</span></h2>
-    <div class="quotes-grid">
-
-      <div class="quote-card reveal reveal-delay-1">
-        <div class="qc-mark">"</div>
-        <div class="qc-text">Training with DC Academy really leveled up my game and helped me grow as a person too. It's not just about Frisbee — it's about building confidence and character. I'd totally recommend it to any school looking for a solid programme.</div>
-        <div class="qc-name">Royston Tay, 14</div>
-        <div class="qc-school">Sri Sempurna International School</div>
-      </div>
-
-      <div class="quote-card reveal reveal-delay-2">
-        <div class="qc-mark">"</div>
-        <div class="qc-text">Training with DC Academy transformed me both on and off the field. Their coaching pushed me to new athletic levels while also building my discipline, confidence, and teamwork. It's more than just frisbee — it's growth.</div>
-        <div class="qc-name">Lucas Pereira, 16</div>
-        <div class="qc-school">Stella Maris International School</div>
-      </div>
-
-      <div class="quote-card reveal reveal-delay-3">
-        <div class="qc-mark">"</div>
-        <div class="qc-text">Joining DC Academy has been one of the best experiences in my athletic and personal life. I developed leadership and communication skills that I carry into my daily life. It not only shaped the athlete in me, but also the person I'm becoming.</div>
-        <div class="qc-name">Lee Pei Yin, 17</div>
-        <div class="qc-school">Sri Sempurna International School</div>
       </div>
 
     </div>
