@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Testimonials | DC Ultimate Frisbee Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s,background 0.2s;}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.4;transition:transform 0.35s,width 0.3s,height 0.3s,opacity 0.3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    /* Page hero */
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:0 4rem 5rem;position:relative;background:var(--mid);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--mid),rgba(20,20,20,0.3));}
+    .page-hero-content{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7rem);text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards;}
+    .page-title .gold{color:var(--gold);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    section{padding:8rem 4rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+
+    /* ── FEATURED CARD (Masayu — parent/teacher) ── */
+    .featured-section{background:var(--black);}
+    .featured-card{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:0;margin-top:4rem;
+      border:1px solid rgba(201,168,76,0.15);
+      position:relative;overflow:hidden;
+    }
+    .featured-card::before{
+      content:'PARENT · TEACHER';
+      position:absolute;top:0;left:0;
+      background:var(--gold);color:var(--black);
+      font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;
+      padding:0.35rem 1rem;z-index:2;
+    }
+    .featured-img{
+      position:relative;overflow:hidden;min-height:400px;
+    }
+    .featured-img img{
+      width:100%;height:100%;object-fit:cover;object-position:center top;
+      filter:saturate(0.85);transition:transform 0.6s,filter 0.4s;
+    }
+    .featured-card:hover .featured-img img{transform:scale(1.03);filter:saturate(1);}
+    .featured-img-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to right,transparent 60%,rgba(10,10,10,0.4) 100%);
+    }
+    .featured-body{
+      background:var(--mid);padding:4rem;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .quote-mark{
+      font-family:'Barlow Condensed',sans-serif;font-weight:900;
+      font-size:6rem;color:var(--gold);opacity:0.2;line-height:0.6;
+      margin-bottom:1rem;
+    }
+    .featured-quote{
+      font-size:1.05rem;line-height:1.85;
+      color:rgba(245,240,232,0.75);
+      margin-bottom:2.5rem;
+    }
+    .featured-quote em{color:var(--gold-light);font-style:normal;}
+    .testi-name{
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:1.4rem;text-transform:uppercase;color:var(--gold);
+    }
+    .testi-role{font-size:0.87rem;color:var(--text-muted);margin-top:0.3rem;}
+
+    /* ── STUDENT CARDS GRID ── */
+    .students-section{background:var(--mid);}
+    .students-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);
+      gap:1.5rem;margin-top:4rem;
+    }
+    .student-card{
+      background:var(--black);
+      border:1px solid rgba(201,168,76,0.08);
+      overflow:hidden;
+      transition:border-color 0.3s;
+      display:grid;grid-template-columns:280px 1fr;
+    }
+    .student-card:hover{border-color:rgba(201,168,76,0.25);}
+    .student-img{
+      position:relative;overflow:hidden;
+    }
+    .student-img img{
+      width:100%;height:100%;object-fit:cover;object-position:center top;
+      filter:saturate(0.8);transition:transform 0.5s,filter 0.3s;
+    }
+    .student-card:hover .student-img img{transform:scale(1.04);filter:saturate(1);}
+    .student-body{
+      padding:2.5rem 2.5rem;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .student-quote-mark{
+      font-family:'Barlow Condensed',sans-serif;font-weight:900;
+      font-size:3.5rem;color:var(--gold);opacity:0.2;line-height:0.7;
+      margin-bottom:1rem;
+    }
+    .student-quote{
+      font-size:0.95rem;line-height:1.8;
+      color:rgba(245,240,232,0.65);
+      margin-bottom:2rem;
+      flex:1;
+    }
+    .student-name{
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:1.2rem;text-transform:uppercase;color:var(--gold);
+    }
+    .student-school{font-size:0.82rem;color:var(--text-muted);margin-top:0.3rem;}
+
+    /* ── ADDITIONAL QUOTES (text only) ── */
+    .quotes-section{background:var(--black);}
+    .quotes-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:1px;margin-top:4rem;
+      background:rgba(201,168,76,0.08);
+    }
+    .quote-card{
+      background:var(--black);padding:3rem 2.5rem;
+      position:relative;transition:background 0.3s;
+    }
+    .quote-card:hover{background:#0f0f0f;}
+    .quote-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.4s;}
+    .quote-card:hover::after{width:100%;}
+    .qc-mark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:var(--gold);opacity:0.18;line-height:0.8;margin-bottom:1rem;}
+    .qc-text{font-size:0.95rem;line-height:1.78;color:rgba(245,240,232,0.55);margin-bottom:2rem;}
+    .qc-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;color:var(--gold);}
+    .qc-school{font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;}
+
+    /* ── CTA ── */
+    .cta-section{
+      background:var(--mid);
+      border-top:1px solid rgba(201,168,76,0.08);
+      padding:7rem 4rem;text-align:center;
+    }
+    .cta-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);text-transform:uppercase;line-height:0.9;margin-bottom:1.5rem;}
+    .cta-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.2);color:transparent;}
+    .cta-sub{font-size:1rem;color:rgba(245,240,232,0.45);max-width:480px;margin:0 auto 3rem;line-height:1.7;}
+
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:2rem;justify-content:flex-end;margin-bottom:1rem;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.8s,transform 0.8s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.22s;}.reveal-delay-3{transition-delay:0.36s;}
+
+    @media(max-width:900px){
+      nav{padding:1.2rem 2rem;}.nav-links{display:none;}
+      .page-hero{padding:0 2rem 4rem;}
+      section{padding:5rem 2rem;}
+      .featured-card{grid-template-columns:1fr;}
+      .featured-img{min-height:280px;}
+      .students-grid{grid-template-columns:1fr;}
+      .student-card{grid-template-columns:1fr;}
+      .student-img{height:260px;}
+      .quotes-grid{grid-template-columns:1fr;}
+      .cta-section{padding:5rem 2rem;}
+      footer{grid-template-columns:1fr;padding:3rem 2rem;}
+      .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="programmes.html">Programmes</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="testimonials.html" class="active">Testimonials</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-eyebrow">// In Their Own Words</p>
+      <h1 class="page-title">WHAT THEY<br><span class="gold">SAY ABOUT US</span></h1>
+    </div>
+  </div>
+
+  <!-- FEATURED — MASAYU (parent/teacher) -->
+  <section class="featured-section">
+    <p class="section-tag reveal">// Parent & Teacher Perspective</p>
+    <h2 class="section-title reveal reveal-delay-1">THE MOST<br><span class="outline">POWERFUL VOICE</span></h2>
+    <div class="featured-card reveal reveal-delay-2">
+      <div class="featured-img">
+        <img src="images/testi_masayu.jpg" alt="Masayu Zahrah testimonial"/>
+        <div class="featured-img-overlay"></div>
+      </div>
+      <div class="featured-body">
+        <div class="quote-mark">"</div>
+        <div class="featured-quote">
+          I'm very fortunate to have Coach Kieran as my coach. As a teacher myself, I'm very impressed on the very first day with how he communicates with the students. He poses questions and then gives explanations very clearly. He's respectful regardless of age and always gives positive encouragement.<br><br>
+          His lessons are always exciting, interesting and he makes us feel like he's one of the students while at the same time ensuring we meet both our expectations. <em>I'm learning how to be a better teacher at the same time.</em>
+        </div>
+        <div class="testi-name">Masayu Zahrah</div>
+        <div class="testi-role">Rafiq's Mother · Teacher</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT CARDS with photos -->
+  <section class="students-section">
+    <p class="section-tag reveal">// Student Voices</p>
+    <h2 class="section-title reveal reveal-delay-1">FROM THE<br><span class="outline">PLAYERS</span></h2>
+    <div class="students-grid">
+
+      <!-- Rafiq -->
+      <div class="student-card reveal reveal-delay-1">
+        <div class="student-img">
+          <img src="images/rafiq_action.jpg" alt="Rafiq, 15 — Sri Aria School"/>
+        </div>
+        <div class="student-body">
+          <div class="student-quote-mark">"</div>
+          <div class="student-quote">
+            I see Coach Kieran as one of the best frisbee coaches you can get in Malaysia. His classes are always structured and exciting, and he is very clear and informative in what he's teaching. I wouldn't be the player I am today without him. Having him as your coach will definitely make you improve a lot in independent skills and teamwork.
+          </div>
+          <div class="student-name">Rafiq, 15</div>
+          <div class="student-school">Sri Aria School Bandar Sri Damansara Campus</div>
+        </div>
+      </div>
+
+      <!-- Matthias -->
+      <div class="student-card reveal reveal-delay-2">
+        <div class="student-img">
+          <img src="images/matthias_action.jpg" alt="Matthias Lim, 16 — Sri Sempurna International School"/>
+        </div>
+        <div class="student-body">
+          <div class="student-quote-mark">"</div>
+          <div class="student-quote">
+            Playing with DC definitely pushed me to do more things that I thought wasn't quite possible in a short amount of time. Coaches can really simplify things into a beginner friendly explanation which helped a lot in my growth as a person and a player. They're funny too!
+          </div>
+          <div class="student-name">Matthias Lim, 16</div>
+          <div class="student-school">Sri Sempurna International School</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MORE TESTIMONIALS — text only -->
+  <section class="quotes-section">
+    <p class="section-tag reveal">// More Voices</p>
+    <h2 class="section-title reveal reveal-delay-1">MORE FROM<br><span class="outline">OUR COMMUNITY</span></h2>
+    <div class="quotes-grid">
+
+      <div class="quote-card reveal reveal-delay-1">
+        <div class="qc-mark">"</div>
+        <div class="qc-text">Training with DC Academy really leveled up my game and helped me grow as a person too. It's not just about Frisbee — it's about building confidence and character. I'd totally recommend it to any school looking for a solid programme.</div>
+        <div class="qc-name">Royston Tay, 14</div>
+        <div class="qc-school">Sri Sempurna International School</div>
+      </div>
+
+      <div class="quote-card reveal reveal-delay-2">
+        <div class="qc-mark">"</div>
+        <div class="qc-text">Training with DC Academy transformed me both on and off the field. Their coaching pushed me to new athletic levels while also building my discipline, confidence, and teamwork. It's more than just frisbee — it's growth.</div>
+        <div class="qc-name">Lucas Pereira, 16</div>
+        <div class="qc-school">Stella Maris International School</div>
+      </div>
+
+      <div class="quote-card reveal reveal-delay-3">
+        <div class="qc-mark">"</div>
+        <div class="qc-text">Joining DC Academy has been one of the best experiences in my athletic and personal life. I developed leadership and communication skills that I carry into my daily life. It not only shaped the athlete in me, but also the person I'm becoming.</div>
+        <div class="qc-name">Lee Pei Yin, 17</div>
+        <div class="qc-school">Sri Sempurna International School</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <h2 class="cta-title">READY TO BE<br><span class="outline">NEXT?</span></h2>
+    <p class="cta-sub">Join the players and schools who've experienced what DC Ultimate Academy is about.</p>
+    <a href="contact.html" class="btn-primary">Get in Touch →</a>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
+      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="events.html">Events</a>
+        <a href="schools.html">Schools</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="media.html">Media</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+    animRing();
+    document.querySelectorAll('a,button,.student-card,.quote-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
+    });
+    document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>
