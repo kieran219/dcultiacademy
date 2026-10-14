@@ -73,6 +73,7 @@
     .footer-links a:hover{color:var(--gold);}
     @media(max-width:900px){nav{padding:1.2rem 2rem;}.nav-links{display:none;}.gallery-wrap{padding:5rem 2rem;}.photo-grid{grid-template-columns:repeat(2,1fr);}.photo-grid.large-first .photo-item:first-child{grid-column:span 1;grid-row:span 1;}footer{grid-template-columns:1fr;padding:3rem 2rem;}.footer-right{text-align:left;}.footer-links{justify-content:flex-start;}.lightbox-prev{left:0.5rem;}.lightbox-next{right:0.5rem;}}
   </style>
+  <link rel="stylesheet" href="mobile.css"/>
 </head>
 <body>
   <div class="cursor" id="cursor"></div>
@@ -243,5 +244,6 @@
       if (e.target === e.currentTarget) closeLightbox();
     });
   </script>
+  <script src="mobile.js"></script>
 </body>
 </html>

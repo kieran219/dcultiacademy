@@ -127,6 +127,7 @@
       .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
     }
   </style>
+  <link rel="stylesheet" href="mobile.css"/>
 </head>
 <body>
   <div class="cursor" id="cursor"></div>
@@ -370,5 +371,6 @@
     const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
   </script>
+  <script src="mobile.js"></script>
 </body>
 </html>

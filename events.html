@@ -63,6 +63,7 @@
     .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.22s;}.reveal-delay-3{transition-delay:0.36s;}
     @media(max-width:900px){nav{padding:1.2rem 2rem;}.nav-links{display:none;}.page-hero{padding:0 2rem 4rem;}section{padding:5rem 2rem;}.events-grid{grid-template-columns:1fr;}.past-item{flex-wrap:wrap;gap:1rem;}.past-badge{margin-left:0;}footer{grid-template-columns:1fr;padding:3rem 2rem;}.footer-right{text-align:left;}.footer-links{justify-content:flex-start;}}
   </style>
+  <link rel="stylesheet" href="mobile.css"/>
 </head>
 <body>
   <div class="cursor" id="cursor"></div>
@@ -184,5 +185,6 @@
     const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
   </script>
+  <script src="mobile.js"></script>
 </body>
 </html>
