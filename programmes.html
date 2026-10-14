@@ -93,11 +93,33 @@
     .reveal-delay-1{transition-delay:0.1s;}
     .reveal-delay-2{transition-delay:0.22s;}
     .reveal-delay-3{transition-delay:0.36s;}
+    /* Course structure */
+    .course{background:var(--black);}
+    .course-intro{margin-top:1.5rem;font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.55);max-width:560px;}
+    .fund-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.08);margin-top:3.5rem;}
+    .fund-card{background:var(--black);padding:2.4rem 2rem;}
+    .fund-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;text-transform:uppercase;color:var(--gold);}
+    .fund-desc{font-size:0.9rem;line-height:1.7;color:rgba(245,240,232,0.5);margin-top:0.7rem;}
+    .rounds{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+    .round{border-top:2px solid rgba(201,168,76,0.35);padding-top:1.4rem;}
+    .round:last-child{border-top-color:var(--gold);}
+    .round-weeks{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);}
+    .round-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;margin-top:0.4rem;}
+    .round-desc{font-size:0.92rem;line-height:1.7;color:rgba(245,240,232,0.5);margin-top:0.4rem;}
+    .progress-note{margin-top:3.5rem;background:var(--mid);border:1px solid rgba(201,168,76,0.15);padding:2.2rem 2.4rem;max-width:860px;}
+    .progress-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+    .progress-note p{font-size:0.98rem;line-height:1.8;color:rgba(245,240,232,0.62);}
+    /* Trial band */
+    .trial-band{background:var(--mid);border-top:1px solid rgba(201,168,76,0.12);display:flex;justify-content:space-between;align-items:center;gap:3rem;padding:6rem 4rem;}
+    .trial-text{max-width:560px;}
+    .trial-text p{font-size:1.02rem;line-height:1.8;color:rgba(245,240,232,0.55);margin-top:1.2rem;}
     @media(max-width:900px){
       nav{padding:1.2rem 2rem;}.nav-links{display:none;}
       .page-hero{padding:0 2rem 4rem;}
       section{padding:5rem 2rem;}
       .services-grid{grid-template-columns:1fr;}
+      .fund-grid{grid-template-columns:1fr 1fr;}.rounds{grid-template-columns:1fr;}
+      .trial-band{flex-direction:column;align-items:flex-start;padding:4rem 2rem;}
       .pricing-grid{grid-template-columns:1fr;}
       .social-strip{flex-direction:column;align-items:flex-start;padding:3rem 2rem;}
       footer{grid-template-columns:1fr;padding:3rem 2rem;}
@@ -161,52 +183,91 @@
     <div style="font-size:1.4rem;opacity:0.6;">🎓</div>
     <div class="u20-text-wrap">
       <div class="u20-label">// Coaching Credentials</div>
-      <div class="u20-title">Coaches with National Level Experience</div>
+      <div class="u20-title">Coaches in Malaysia's Unofficial U20 Programme</div>
     </div>
-    <div class="u20-note">Our coaches bring experience from the Malaysian U20 programme, providing students with national-level coaching methodology and standards.</div>
+    <div class="u20-note">Our coaches are involved in Malaysia's unofficial U20 programme and bring that coaching standard to every session.</div>
   </div>
 
   <!-- SESSION BREAKDOWN -->
   <section class="session">
     <p class="section-tag reveal">// Session Structure</p>
-    <h2 class="section-title reveal reveal-delay-1">A TYPICAL<br><span class="outline">SESSION</span></h2>
-    <p style="margin-top:1.5rem;font-size:1.05rem;color:rgba(245,240,232,0.55);max-width:500px;" class="reveal reveal-delay-2">Every 50–60 minute session follows a progressive structure — building fitness, technical skill and game intelligence simultaneously.</p>
+    <h2 class="section-title reveal reveal-delay-1">EVERY SESSION,<br><span class="outline">DESIGNED</span></h2>
+    <p style="margin-top:1.5rem;font-size:1.05rem;color:rgba(245,240,232,0.55);max-width:540px;" class="reveal reveal-delay-2">Every session follows the same four blocks, so students know what to expect and every coach delivers the same standard. Each block builds a character skill as well as a sport skill.</p>
     <div class="session-steps">
       <div class="step reveal">
         <div class="step-num">01</div>
         <div class="step-body">
-          <div class="step-title">Dynamic Warm-Up & Movement Prep</div>
-          <div class="step-desc">Sport-specific warm-up activating the hips, shoulders and footwork patterns used in Ultimate Frisbee.</div>
+          <div class="step-title">Warm-Up &amp; Alignment</div>
+          <div class="step-desc">Movement prep and an icebreaker that brings the group to the same energy. One student leads part of it. Builds communication.</div>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">02</div>
         <div class="step-body">
-          <div class="step-title">Technical Skill Development</div>
-          <div class="step-desc">Throwing mechanics, cutting patterns, defensive positioning — broken down and drilled progressively.</div>
+          <div class="step-title">Skill Block</div>
+          <div class="step-desc">Constraint-based drills that mix two or more fundamentals while spotlighting the week's focus skill. The drill design teaches the decision. Builds critical thinking.</div>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">03</div>
         <div class="step-body">
-          <div class="step-title">Game-Based Drills & Tactical Application</div>
-          <div class="step-desc">Skills applied in game-like scenarios — developing decision-making, communication and team coordination.</div>
+          <div class="step-title">Game Play</div>
+          <div class="step-desc">Small-sided games where students make their own calls, with one student given a specific captain's challenge. Builds leadership.</div>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-num">04</div>
         <div class="step-body">
-          <div class="step-title">Small-Sided Gameplay</div>
-          <div class="step-desc">Competitive play in smaller formats — fast-paced, high-touch and self-officiated to build game intelligence.</div>
+          <div class="step-title">Spirit Circle</div>
+          <div class="step-desc">Every student speaks, answering one question that asks them to reflect on or rethink a moment from the game. Builds communication and self-awareness.</div>
         </div>
       </div>
-      <div class="step reveal">
-        <div class="step-num">05</div>
-        <div class="step-body">
-          <div class="step-title">Reflection & Debrief</div>
-          <div class="step-desc">Short team reflection on what was learned — reinforcing Spirit of the Game principles and leadership habits.</div>
-        </div>
+    </div>
+  </section>
+
+  <!-- COURSE STRUCTURE -->
+  <section class="course">
+    <p class="section-tag reveal">// Course Structure</p>
+    <h2 class="section-title reveal reveal-delay-1">A 12-WEEK TERM,<br><span class="outline">FUNDAMENTALS FIRST</span></h2>
+    <p class="course-intro reveal reveal-delay-2">We don't rush students into advanced systems. Every term returns to four fundamentals and goes deeper, with the length adapted to each school's CCA programme.</p>
+    <div class="fund-grid">
+      <div class="fund-card reveal reveal-delay-1">
+        <div class="fund-name">Throwing</div>
+        <div class="fund-desc">Flat backhands and forehands, arounds and uplines. Hucks for more proficient players.</div>
       </div>
+      <div class="fund-card reveal reveal-delay-2">
+        <div class="fund-name">Cutting</div>
+        <div class="fund-desc">Jab cuts, lateral explosiveness, change of direction, timing and using space.</div>
+      </div>
+      <div class="fund-card reveal reveal-delay-3">
+        <div class="fund-name">Catching</div>
+        <div class="fund-desc">Catching at speed without slowing down, catching in space, high and low catches.</div>
+      </div>
+      <div class="fund-card reveal reveal-delay-3">
+        <div class="fund-name">Strategy</div>
+        <div class="fund-desc">Spacing, handler and cutter roles, reading the force and decisions within the stall count.</div>
+      </div>
+    </div>
+    <div class="rounds">
+      <div class="round reveal reveal-delay-1">
+        <div class="round-weeks">Weeks 1–4</div>
+        <div class="round-name">Learn</div>
+        <div class="round-desc">The technique of each fundamental, without pressure.</div>
+      </div>
+      <div class="round reveal reveal-delay-2">
+        <div class="round-weeks">Weeks 5–8</div>
+        <div class="round-name">Pressure</div>
+        <div class="round-desc">The same skills against a marker or defender.</div>
+      </div>
+      <div class="round reveal reveal-delay-3">
+        <div class="round-weeks">Weeks 9–12</div>
+        <div class="round-name">Game</div>
+        <div class="round-desc">Using them in self-officiated games, ending with a showcase that parents and teachers are invited to.</div>
+      </div>
+    </div>
+    <div class="progress-note reveal">
+      <div class="progress-label">// How progress is measured</div>
+      <p>Communication, leadership and critical thinking are scored against defined behaviours at weeks 1, 6 and 12, alongside simple skill checkpoints in each fundamental. Parents receive a monthly update and an end-of-term summary; partner schools receive an end-of-term report.</p>
     </div>
   </section>
 
@@ -246,6 +307,17 @@
     </div>
   </section>
 
+  <!-- TRIAL -->
+  <section class="trial-band" id="trial">
+    <div class="trial-text reveal">
+      <p class="section-tag">// Free Trial</p>
+      <h2 class="section-title">TRY A<br><span class="outline">SESSION</span></h2>
+      <p>Come and see a session for yourself, with no commitment. Ages 12–17, beginners welcome. Message us and we'll find a date that works.</p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <a href="https://wa.me/60173121033?text=Hi%20Kieran%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20session%20for%20my%20child." target="_blank" rel="noopener" class="btn-primary">Book a Free Trial on WhatsApp</a>
+    </div>
+  </section>
   <div class="social-strip">
     <div>
       <div class="social-tag">Follow Our Journey</div>
@@ -262,7 +334,7 @@
   <footer>
     <div>
       <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
-      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+      <div class="footer-tagline">We train people, not just athletes.</div>
     </div>
     <div class="footer-right">
       <div class="footer-links">

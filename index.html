@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DC Ultimate Frisbee Academy | Making the Ultimate Athlete</title>
+  <title>DC Ultimate Frisbee Academy | Character Development Through Ultimate Frisbee</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--gold-dim:rgba(201,168,76,0.15);--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
@@ -22,13 +22,13 @@
     .hero-bg-photo{position:absolute;inset:0;background:url("images/image1.jpg") center 30%/cover no-repeat;filter:brightness(0.22) saturate(0.6);}
     .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.92) 45%,rgba(10,10,10,0.3) 100%),linear-gradient(to top,rgba(10,10,10,0.8) 0%,transparent 40%);}
     .hero-gold-glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 75% 35%,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
-    .hero-content{align-self:center;padding-top:11rem;max-width:700px;position:relative;z-index:1;}
+    .hero-content{align-self:center;padding-top:11rem;max-width:860px;position:relative;z-index:1;}
     .hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
-    .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(4.5rem,11vw,10.5rem);line-height:0.88;text-transform:uppercase;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
+    .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.4rem,7.5vw,7.4rem);line-height:0.88;text-transform:uppercase;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
     .hero-title .outline{-webkit-text-stroke:1.5px rgba(245,240,232,0.35);color:transparent;}
     .hero-title .gold{color:var(--gold);}
     .hero-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1.55rem;font-weight:300;letter-spacing:0.05em;color:var(--gold-light);margin-top:1.8rem;opacity:0;animation:fadeUp 0.8s 0.55s forwards;}
-    .hero-sub{font-size:1.05rem;font-weight:300;line-height:1.72;color:rgba(245,240,232,0.55);max-width:450px;margin-top:1.3rem;opacity:0;animation:fadeUp 0.8s 0.65s forwards;}
+    .hero-sub{font-size:1.05rem;font-weight:300;line-height:1.72;color:rgba(245,240,232,0.55);max-width:520px;margin-top:1.3rem;opacity:0;animation:fadeUp 0.8s 0.65s forwards;}
     .hero-ctas{display:flex;gap:1.2rem;align-items:center;margin-top:2.8rem;opacity:0;animation:fadeUp 0.8s 0.8s forwards;}
     .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
     .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
@@ -95,6 +95,24 @@
     .reveal-delay-1{transition-delay:0.1s;}
     .reveal-delay-2{transition-delay:0.22s;}
     .reveal-delay-3{transition-delay:0.36s;}
+    /* Outcomes, quote, trial */
+    .outcomes{background:var(--black);}
+    .outcomes-intro{font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.55);max-width:560px;margin-top:1.5rem;}
+    .outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.08);margin-top:3.5rem;}
+    .outcome-card{background:var(--black);padding:2.4rem 2.2rem;}
+    .outcome-kind{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:0.9rem;}
+    .outcome-kind.emerge{color:var(--text-muted);}
+    .outcome-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.7rem;text-transform:uppercase;line-height:1;}
+    .outcome-desc{font-size:0.92rem;line-height:1.7;color:rgba(245,240,232,0.5);margin-top:0.7rem;}
+    .home-quote{background:var(--mid);border-top:1px solid rgba(201,168,76,0.08);}
+    .home-quote-text{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.3;max-width:900px;margin-top:1.5rem;}
+    .home-quote-text::before{content:'\201C';color:var(--gold);margin-right:0.2rem;}
+    .home-quote-attr{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:2rem;}
+    .home-quote-attr strong{color:var(--gold);font-weight:700;}
+    .home-quote .btn-ghost{margin-top:2.2rem;}
+    .trial-band{background:var(--black);border-top:1px solid rgba(201,168,76,0.12);display:flex;justify-content:space-between;align-items:center;gap:3rem;padding:6rem 4rem;}
+    .trial-text{max-width:560px;}
+    .trial-text p{font-size:1.02rem;line-height:1.8;color:rgba(245,240,232,0.55);margin-top:1.2rem;}
     @media(max-width:900px){
       nav{padding:1.2rem 2rem;}.nav-links{display:none;}
       section{padding:5rem 2rem;}.hero{padding:0 2rem;}
@@ -102,6 +120,8 @@
       .hero-stats{gap:2rem;flex-wrap:wrap;}
       .about-grid{grid-template-columns:1fr;gap:3rem;}
       .page-links-grid{grid-template-columns:1fr 1fr;}
+      .outcome-grid{grid-template-columns:1fr;}
+      .trial-band{flex-direction:column;align-items:flex-start;padding:4rem 2rem;}
       .social-strip{flex-direction:column;align-items:flex-start;padding:3rem 2rem;}
       footer{grid-template-columns:1fr;padding:3rem 2rem;}
       .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
@@ -132,18 +152,18 @@
     <div class="hero-bg-overlay"></div>
     <div class="hero-gold-glow"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Malaysia's Premier Youth Ultimate Academy</p>
+      <p class="hero-eyebrow">Youth Ultimate Frisbee Academy · Klang Valley</p>
       <h1 class="hero-title">
-        <span class="outline">TRAIN</span><br>
-        <span class="gold">HARDER.</span><br>
-        <span class="outline">RISE</span><br>
-        HIGHER.
+        <span class="outline">MOST SPORTS</span><br>
+        TRAIN ATHLETES.<br>
+        <span class="gold">WE TRAIN</span><br>
+        PEOPLE.
       </h1>
-      <p class="hero-tagline">Making the Ultimate Athlete.</p>
-      <p class="hero-sub">DC Ultimate Frisbee Academy develops youth players in Malaysia — building character, leadership and athletic excellence through the sport.</p>
+      <p class="hero-tagline">Character development, delivered through Ultimate Frisbee.</p>
+      <p class="hero-sub">We use Ultimate Frisbee to develop communication, leadership and critical thinking in young people aged 12–17, along with the confidence, initiative and self-awareness that grow from them.</p>
       <div class="hero-ctas">
-        <a href="programmes.html" class="btn-primary">Our Programmes</a>
-        <a href="contact.html" class="btn-ghost">Get In Touch</a>
+        <a href="https://wa.me/60173121033?text=Hi%20Kieran%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20session%20for%20my%20child." target="_blank" rel="noopener" class="btn-primary">Book a Free Trial</a>
+        <a href="programmes.html" class="btn-ghost">Our Programmes</a>
       </div>
     </div>
     <div class="hero-stats">
@@ -157,7 +177,7 @@
       </div>
       <div>
         <div class="stat-num">U20</div>
-        <div class="stat-label">National Level Coaches</div>
+        <div class="stat-label">Unofficial U20 Programme Coaches</div>
       </div>
       <div>
         <div class="stat-num">MY</div>
@@ -170,13 +190,13 @@
   <div class="marquee-strip" aria-hidden="true">
     <div class="marquee-inner">
       <span class="marquee-item">DC Ultimate Frisbee Academy</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Making the Ultimate Athlete</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">We Train People, Not Just Athletes</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Youth Development</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Spirit of the Game</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Leaders on and off the field</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">DC Ultimate Frisbee Academy</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Making the Ultimate Athlete</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">We Train People, Not Just Athletes</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Youth Development</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">Spirit of the Game</span><span class="marquee-dot">✦</span>
       <span class="marquee-item">High School Excellence</span><span class="marquee-dot">✦</span>
@@ -194,7 +214,7 @@
     <div class="about-grid">
       <div class="about-text reveal reveal-delay-2">
         <p>DC Ultimate Frisbee Academy was founded in 2019 with a singular belief — <strong>Ultimate Frisbee is one of the only sports in the world with no referee.</strong> Players govern themselves. That makes it a natural environment for developing leadership, integrity and accountability.</p>
-        <p>We don't just coach a sport. We use the sport to build young people who lead themselves — on the field and beyond it. Our coaches bring national-level experience and a genuine commitment to long-term athlete development.</p>
+        <p>We don't just coach a sport. We use the sport to build young people who lead themselves — on the field and beyond it. Our coaches are involved in Malaysia's unofficial U20 programme and bring a genuine commitment to long-term development.</p>
         <div class="mission-card">
           <div class="mission-label">// Our Mission</div>
           <div class="mission-text">We don't coach frisbee.<br><em>We use frisbee to build people<br>who lead themselves.</em></div>
@@ -207,6 +227,65 @@
           <div class="about-photo-caption">DC Ultimate · Est. 2019 · Klang Valley, Malaysia</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="outcomes" id="outcomes">
+    <p class="section-tag reveal">// What Students Develop</p>
+    <h2 class="section-title reveal reveal-delay-1">SIX<br><span class="outline">OUTCOMES</span></h2>
+    <p class="outcomes-intro reveal reveal-delay-2">We teach three skills directly and track them every term. Three traits grow out of them, so we watch for those and name them when they appear.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-kind">Taught &amp; tracked</div>
+        <div class="outcome-name">Communication</div>
+        <div class="outcome-desc">Shares their view clearly, listens to the other side of a call, and resolves disagreements with respect.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-kind">Taught &amp; tracked</div>
+        <div class="outcome-name">Leadership</div>
+        <div class="outcome-desc">Takes charge when given a role and lifts teammates who are struggling.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-3">
+        <div class="outcome-kind">Taught &amp; tracked</div>
+        <div class="outcome-name">Critical Thinking</div>
+        <div class="outcome-desc">Reads situations from different angles and solves problems instead of dwelling on mistakes.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-kind emerge">Emerges</div>
+        <div class="outcome-name">Confidence</div>
+        <div class="outcome-desc">Willing to try, and to fail safely, on and off the field.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-kind emerge">Emerges</div>
+        <div class="outcome-name">Initiative</div>
+        <div class="outcome-desc">Sees what needs doing and steps up without being asked.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-3">
+        <div class="outcome-kind emerge">Emerges</div>
+        <div class="outcome-name">Self-Awareness</div>
+        <div class="outcome-desc">Knows their strengths and limits, and asks for help when they need it.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="home-quote">
+    <p class="section-tag reveal">// From a Parent and Teacher</p>
+    <p class="home-quote-text reveal reveal-delay-1">As a teacher myself, I was impressed on the very first day with how he communicates with the students. He poses questions and then gives explanations very clearly.</p>
+    <p class="home-quote-attr reveal reveal-delay-2"><strong>Masayu Zahrah</strong> · Rafiq's mother · Teacher</p>
+    <a href="testimonials.html" class="btn-ghost reveal reveal-delay-2">Read more testimonials</a>
+  </section>
+
+  <!-- TRIAL -->
+  <section class="trial-band" id="trial">
+    <div class="trial-text reveal">
+      <p class="section-tag">// Free Trial</p>
+      <h2 class="section-title">TRY A<br><span class="outline">SESSION</span></h2>
+      <p>Come and see a session for yourself, with no commitment. Ages 12–17, beginners welcome. Message us and we'll find a date that works.</p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <a href="https://wa.me/60173121033?text=Hi%20Kieran%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20session%20for%20my%20child." target="_blank" rel="noopener" class="btn-primary">Book a Free Trial on WhatsApp</a>
     </div>
   </section>
 
@@ -263,7 +342,7 @@
   <footer>
     <div>
       <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
-      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+      <div class="footer-tagline">We train people, not just athletes.</div>
     </div>
     <div class="footer-right">
       <div class="footer-links">
