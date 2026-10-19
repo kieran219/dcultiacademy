@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parent FAQ | DC Ultimate Frisbee Academy</title>
+  <meta name="description" content="Parent FAQ for DC Ultimate Frisbee Academy. Youth ultimate frisbee for ages 12-17 in the Klang Valley: fees, the free trial, what to bring, sessions and contact."/>
+  <link rel="canonical" href="https://dcultiacademy.vercel.app/faq"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DC Ultimate Frisbee Academy"/>
+  <meta property="og:title" content="Parent FAQ | DC Ultimate Frisbee Academy"/>
+  <meta property="og:description" content="Youth ultimate frisbee for ages 12-17 in the Klang Valley. Fees, the free trial on 21 November 2026, what to bring, and how to contact DCUA."/>
+  <meta property="og:url" content="https://dcultiacademy.vercel.app/faq"/>
+  <meta property="og:image" content="https://dcultiacademy.vercel.app/images/og.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Parent FAQ | DC Ultimate Frisbee Academy"/>
+  <meta name="twitter:description" content="Youth ultimate frisbee for ages 12-17 in the Klang Valley. Fees, the free trial on 21 November 2026, what to bring, and how to contact DCUA."/>
+  <meta name="twitter:image" content="https://dcultiacademy.vercel.app/images/og.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s,background 0.2s;}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.4;transition:transform 0.35s,width 0.3s,height 0.3s,opacity 0.3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:1.35rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:0 4rem 5rem;position:relative;background:var(--mid);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--mid),rgba(20,20,20,0.3));}
+    .page-hero-content{position:relative;z-index:1;}
+    .page-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7rem);text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards;}
+    .page-title .gold{color:var(--gold);}
+    .page-lead{max-width:36rem;margin-top:1.2rem;font-size:1.05rem;line-height:1.7;color:rgba(245,240,232,0.62);opacity:0;animation:fadeUp 0.7s 0.4s forwards;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+    .btn-ghost{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem;opacity:0.7;transition:opacity 0.2s;}
+    .btn-ghost:hover{opacity:1;}
+    .btn-ghost::after{content:'→';color:var(--gold);}
+    .trial-band{background:var(--black);border-top:1px solid rgba(201,168,76,0.12);border-bottom:1px solid rgba(201,168,76,0.12);display:flex;justify-content:space-between;align-items:center;gap:3rem;padding:4.5rem 4rem;}
+    .trial-text{max-width:640px;}
+    .trial-text p{font-size:1.02rem;line-height:1.8;color:rgba(245,240,232,0.62);margin-top:1rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,4rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .faq-wrap{padding:5rem 4rem 6rem;max-width:980px;}
+    .faq-block{margin-top:3.5rem;}
+    .faq-block h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.6rem);text-transform:uppercase;letter-spacing:-0.01em;color:var(--gold);margin-bottom:0.4rem;}
+    .faq-item{padding:1.45rem 0;border-bottom:1px solid rgba(201,168,76,0.12);}
+    .faq-item h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;text-transform:uppercase;line-height:1.15;margin-bottom:0.55rem;}
+    .faq-item p,.faq-item li{font-size:1.02rem;line-height:1.75;color:rgba(245,240,232,0.72);}
+    .faq-item p+p{margin-top:0.8rem;}
+    .faq-item ul{margin:0.7rem 0 0.7rem 1.2rem;}
+    .faq-item li{margin:0.35rem 0;}
+    .faq-item a{color:var(--gold-light);text-decoration:none;}
+    .faq-item a:hover{color:var(--gold);}
+    .faq-cta{margin-top:1.1rem;}
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:1.2rem;justify-content:flex-end;margin-bottom:1rem;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    @media(max-width:900px){
+      nav{padding:1.2rem 2rem;}
+      .page-hero,.trial-band,.faq-wrap{padding-left:1.5rem;padding-right:1.5rem;}
+      .page-hero{padding-bottom:3.5rem;}
+      .trial-band{flex-direction:column;align-items:flex-start;padding-top:3rem;padding-bottom:3rem;}
+      footer{grid-template-columns:1fr;padding:3rem 1.5rem;}
+      .footer-right{text-align:left;}
+      .footer-links{justify-content:flex-start;}
+    }
+  </style>
+  <link rel="stylesheet" href="mobile.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="programmes.html">Programmes</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-eyebrow">// DC Ultimate Frisbee Academy (DCUA)</p>
+      <h1 class="page-title">PARENT<br><span class="gold">FAQ</span></h1>
+      <p class="page-lead">Youth ultimate frisbee for ages 12-17 in the Klang Valley</p>
+    </div>
+  </div>
+
+  <section class="trial-band" id="trial">
+    <div class="trial-text">
+      <p class="section-tag">// Free trial</p>
+      <h2 class="section-title">SAT 21 NOV<br><span class="outline">2026</span></h2>
+      <p>9am-12pm, Taman Desa Park. Bring water, sports shoes, a hat, sunscreen and light clothes. Any changes (for example haze) will be sent by WhatsApp by Fri 20 Nov.</p>
+    </div>
+    <div class="trial-actions">
+      <a href="https://forms.gle/XLy1ifnm2v2Y9GqZ6" class="btn-primary" target="_blank" rel="noopener">Sign up for the free trial</a>
+      <a href="https://wa.me/60173121033" class="btn-ghost" target="_blank" rel="noopener">WhatsApp 017-312 1033</a>
+    </div>
+  </section>
+
+  <div class="faq-wrap">
+    <section class="faq-block" id="about">
+      <h2>About DCUA</h2>
+      <article class="faq-item">
+        <h3>What is DCUA?</h3>
+        <p>We use ultimate frisbee to help young people aged 12-17 build communication, leadership and critical thinking. In ultimate, players referee their own games, so these skills get practised in every game.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Does my child need experience?</h3>
+        <p>No, beginners are very welcome. Every drill has three versions, and each player uses the one that matches their level, so mixed groups work and nobody is left behind.</p>
+      </article>
+      <article class="faq-item">
+        <h3>My child is 12. Will they play against 17-year-olds?</h3>
+        <p>Contested drills and match-ups are paired by size and level, and every child gets game time whatever their ability.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Are boys and girls mixed?</h3>
+        <p>Yes. We run mixed groups, and girls are very welcome. Modest sportswear is welcome too.</p>
+      </article>
+      <article class="faq-item">
+        <h3>What language are sessions in?</h3>
+        <p>English.</p>
+      </article>
+    </section>
+
+    <section class="faq-block" id="cost">
+      <h2>Cost and membership</h2>
+      <article class="faq-item">
+        <h3>How much does it cost?</h3>
+        <p>Ultimate Youth Project (UYP), Saturday programme: RM300 per month. When two or more siblings join, each pays RM250 per month. Membership includes:</p>
+        <ul>
+          <li>Weekly Saturday sessions, 9am–12pm at Taman Desa Park</li>
+          <li>Online coaching when scheduled, and training materials in our Discord community (for players aged 13+, with parental consent). If your child can't use Discord, we'll agree another way to get them the materials</li>
+          <li>Extra training sessions during school holidays when scheduled, at no extra cost</li>
+          <li>All discs and equipment</li>
+          <li>A monthly progress update for parents</li>
+        </ul>
+        <p>Video reviews and 1-to-1 sessions are available on request, subject to availability.</p>
+        <p>Start with a free trial: <a href="https://wa.me/60173121033" target="_blank" rel="noopener">WhatsApp 017-312 1033</a>.</p>
+      </article>
+      <article class="faq-item">
+        <h3>How and when do we pay?</h3>
+        <p>Fees are paid monthly in advance by bank transfer. Each membership renews on its own payment date every month.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Do you give refunds?</h3>
+        <p>Fees are non-refundable. Membership covers our ongoing coaching service rather than individual sessions.</p>
+      </article>
+      <article class="faq-item">
+        <h3>What if my child misses a session?</h3>
+        <p>Missed sessions aren't refunded or made up one for one, since membership covers the coaching service as a whole. If we cancel a Saturday, for example for weather or haze, it isn't made up either. Holiday sessions and online coaching help your child keep up.</p>
+      </article>
+      <article class="faq-item">
+        <h3>How do we cancel?</h3>
+        <p>WhatsApp us before your next payment date. Your child can finish the month you've already paid for, with no partial refunds.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Can we pause, for example during exams?</h3>
+        <p>Yes. Membership can be paused up to twice a year, for up to a month each time, around major exam periods. There's no fee for a paused month. WhatsApp us to arrange it.</p>
+      </article>
+    </section>
+
+    <section class="faq-block" id="free-trial">
+      <h2>Free trial</h2>
+      <article class="faq-item">
+        <h3>How do we start?</h3>
+        <p>Come to our free trial session:</p>
+        <p>Sat 21 Nov 2026, 9am-12pm, Taman Desa Park.</p>
+        <p>If it's hazy, we'll WhatsApp you any changes by Fri 20 Nov.</p>
+        <p>To register or ask anything, WhatsApp us on <a href="https://wa.me/60173121033" target="_blank" rel="noopener">017-312 1033</a>.</p>
+        <div class="faq-cta">
+          <a href="https://forms.gle/XLy1ifnm2v2Y9GqZ6" class="btn-primary" target="_blank" rel="noopener">Sign up for the free trial</a>
+        </div>
+      </article>
+      <article class="faq-item">
+        <h3>What should my child bring?</h3>
+        <p>Water, sports shoes, a hat, sunscreen and light clothes. We provide all discs and equipment.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Is there an offer for families we meet at the fair?</h3>
+        <p>Yes. New families who sign up at our PISF KL booth and join UYP by 30 Nov get a special first-month discount. It's one per family and can't be combined with the sibling rate. Ask us at the booth or on WhatsApp for details.</p>
+      </article>
+    </section>
+
+    <section class="faq-block" id="sessions">
+      <h2>Sessions</h2>
+      <article class="faq-item">
+        <h3>What happens in a session?</h3>
+        <p>Every session has a warm-up, skill drills, games and a spirit circle, where the coach encourages students and invites them to share a reflection.</p>
+      </article>
+      <article class="faq-item">
+        <h3>How do school programmes work?</h3>
+        <p>For school programmes, a term runs for 12 weeks: Learn, Pressure, Game, then a week-12 showcase where students lead the warm-up, play and reflect in front of parents.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Can I stay and watch?</h3>
+        <p>Yes. Parents are always welcome to stay and watch.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Is it safe?</h3>
+        <p>Ultimate is non-contact by rule. We collect parental consent and medical information before the first session, and there's a first-aid kit and water at every session.</p>
+      </article>
+      <article class="faq-item">
+        <h3>My child has a medical condition.</h3>
+        <p>Please tell us on the consent and medical form, which every family completes before the first session.</p>
+      </article>
+      <article class="faq-item">
+        <h3>What if my child gets hurt?</h3>
+        <p>The coach gives first aid from the kit we bring to every session, records what happened, and lets you know straight away.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Who is responsible for my child before and after sessions?</h3>
+        <p>We're responsible during session hours and any coach-led extras, like a team lunch. Please drop off and pick up on time.</p>
+      </article>
+      <article class="faq-item">
+        <h3>What happens in bad weather or haze?</h3>
+        <p>We check the forecast and air quality, and confirm each Saturday session by Friday 6pm. If we have to cancel at short notice, we'll WhatsApp parents and players.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Can my child join partway through?</h3>
+        <p>Yes. New players can join on any Saturday.</p>
+      </article>
+    </section>
+
+    <section class="faq-block" id="progress">
+      <h2>Progress</h2>
+      <article class="faq-item">
+        <h3>What will my child gain?</h3>
+        <p>We teach, observe and report three outcomes: communication, leadership and critical thinking. We also watch for confidence, initiative and self-awareness. Each is observed and reported, from "not yet visible" to "established".</p>
+      </article>
+      <article class="faq-item">
+        <h3>How will I know how my child is doing?</h3>
+        <p>UYP parents get a monthly progress update. If your child joins through their school, the school gets a termly summary report, and individual student notes are available to the school on request.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Who is the coach?</h3>
+        <p>Coach Kieran Ng, former international school teacher and coach (2019-2024). Coach Kieran also coaches Penyu, the unofficial Malaysian U20 team.</p>
+      </article>
+      <article class="faq-item">
+        <h3>What's next for committed players?</h3>
+        <p>Players will have the opportunity to compete in DC Ultimate Frisbee Academy events.</p>
+      </article>
+    </section>
+
+    <section class="faq-block" id="contact">
+      <h2>Contact</h2>
+      <article class="faq-item">
+        <h3>Still have a question? Just WhatsApp us.</h3>
+        <p>WhatsApp: <a href="https://wa.me/60173121033" target="_blank" rel="noopener">017-312 1033</a></p>
+        <p>Email: <a href="mailto:dcultimatefrisbeeclub@gmail.com">dcultimatefrisbeeclub@gmail.com</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/dcultiacademy" target="_blank" rel="noopener">@dcultiacademy</a></p>
+      </article>
+    </section>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
+      <div class="footer-tagline">We train people, not just athletes.</div>
+      <div class="footer-contact">
+        <a href="https://wa.me/60173121033" target="_blank" rel="noopener">WhatsApp 017-312 1033</a>
+        <a href="mailto:dcultimatefrisbeeclub@gmail.com">dcultimatefrisbeeclub@gmail.com</a>
+        <a href="https://www.instagram.com/dcultiacademy" target="_blank" rel="noopener">@dcultiacademy</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="events.html">Events</a>
+        <a href="schools.html">Schools</a>
+        <a href="faq.html">FAQ</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="media.html">Media</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
+    </div>
+  </footer>
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+    animRing();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
+    });
+    document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+  </script>
+  <script src="mobile.js"></script>
+</body>
+</html>
