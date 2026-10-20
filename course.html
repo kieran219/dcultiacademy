@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="What DC Ultimate Frisbee Academy teaches: passing, getting free, catching, defending and decisions, plus six character outcomes we observe and report. Saturday Ultimate Youth Project players move at their own pace."/>
+  <link rel="canonical" href="https://dcultiacademy.vercel.app/course"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DC Ultimate Frisbee Academy"/>
+  <meta property="og:title" content="What We Teach | DC Ultimate Frisbee Academy"/>
+  <meta property="og:description" content="What DC Ultimate Frisbee Academy teaches: passing, getting free, catching, defending and decisions, plus six character outcomes we observe and report. Saturday Ultimate Youth Project players move at their own pace."/>
+  <meta property="og:url" content="https://dcultiacademy.vercel.app/course"/>
+  <meta property="og:image" content="https://dcultiacademy.vercel.app/images/og.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="What We Teach | DC Ultimate Frisbee Academy"/>
+  <meta name="twitter:description" content="What DC Ultimate Frisbee Academy teaches: passing, getting free, catching, defending and decisions, plus six character outcomes we observe and report. Saturday Ultimate Youth Project players move at their own pace."/>
+  <meta name="twitter:image" content="https://dcultiacademy.vercel.app/images/og.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <title>What We Teach | DC Ultimate Frisbee Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--gold:#c9a84c;--gold-light:#e8c96a;--mid:#141414;--grey:#2e2e2e;--text-muted:#777;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s,background 0.2s;}
+    .cursor-ring{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.4;transition:transform 0.35s,width 0.3s,height 0.3s,opacity 0.3s;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 4rem;transition:background 0.3s;}
+    nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,0.12);}
+    .nav-logo img{height:32px;width:auto;display:block;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;opacity:0.6;transition:opacity 0.2s,color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .page-hero{min-height:45vh;display:flex;align-items:flex-end;padding:0 4rem 5rem;position:relative;background:var(--mid);}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--mid),rgba(20,20,20,0.3));}
+    .page-hero-content{position:relative;z-index:1;max-width:860px;}
+    .page-eyebrow{font-family:'Space Mono',monospace;font-size:0.67rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+    .page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3.5rem,8vw,7rem);text-transform:uppercase;line-height:0.88;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.7s 0.25s forwards;}
+    .page-title .gold{color:var(--gold);}
+    .page-lead{margin-top:1.4rem;max-width:640px;font-size:1.05rem;line-height:1.75;color:rgba(245,240,232,0.62);opacity:0;animation:fadeUp 0.7s 0.4s forwards;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    section{padding:8rem 4rem;}
+    .section-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.8;}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,5rem);text-transform:uppercase;line-height:0.9;letter-spacing:-0.02em;}
+    .section-title .outline{-webkit-text-stroke:1px rgba(245,240,232,0.28);color:transparent;}
+    .lede{margin-top:1.5rem;max-width:720px;font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.62);}
+    .lede a{color:var(--gold);text-decoration:none;}
+    .lede a:hover{color:var(--gold-light);}
+    .skills{background:var(--black);}
+    .skill-group{margin-top:4rem;}
+    .skill-group h3{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem;}
+    .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.08);}
+    .skill-grid.one{grid-template-columns:1fr;max-width:640px;}
+    .skill-card{background:var(--black);padding:2.2rem 2rem;}
+    .skills .skill-card{background:var(--mid);}
+    .skill-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.7rem;text-transform:uppercase;color:var(--gold);line-height:1;}
+    .skill-plain{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:0.45rem;}
+    .skill-desc{font-size:0.92rem;line-height:1.7;color:rgba(245,240,232,0.55);margin-top:0.85rem;}
+    .outcomes{background:var(--mid);}
+    .outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.08);margin-top:3.5rem;}
+    .outcome-card{background:var(--mid);padding:2.2rem 2rem;}
+    .outcomes .outcome-card{background:var(--black);}
+    .outcome-kind{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:0.9rem;}
+    .outcome-kind.emerge{color:var(--text-muted);}
+    .outcome-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.7rem;text-transform:uppercase;line-height:1;}
+    .outcome-desc{font-size:0.92rem;line-height:1.7;color:rgba(245,240,232,0.55);margin-top:0.7rem;}
+    .progress-note{margin-top:3rem;background:var(--black);border:1px solid rgba(201,168,76,0.15);padding:2.2rem 2.4rem;max-width:860px;}
+    .progress-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+    .progress-note p{font-size:0.98rem;line-height:1.8;color:rgba(245,240,232,0.62);}
+    .session{background:var(--black);}
+    .session-steps{margin-top:3.5rem;display:flex;flex-direction:column;}
+    .step{display:flex;gap:2.5rem;align-items:flex-start;padding:2rem 0;border-bottom:1px solid rgba(201,168,76,0.08);}
+    .step:first-child{border-top:1px solid rgba(201,168,76,0.08);}
+    .step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.4rem;color:var(--gold);opacity:0.35;min-width:2.6rem;line-height:1;}
+    .step-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:0.35rem;}
+    .step-desc{font-size:0.95rem;line-height:1.75;color:rgba(245,240,232,0.55);max-width:720px;}
+    .spirit{background:var(--mid);}
+    .spirit p{max-width:720px;font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.62);margin-top:1.2rem;}
+    .next-links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:2.4rem;}
+    .btn-primary{background:var(--gold);color:var(--black);font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s,background 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 rgba(201,168,76,0.28);background:var(--gold-light);}
+    .btn-ghost{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem;opacity:0.7;transition:opacity 0.2s;}
+    .btn-ghost:hover{opacity:1;}
+    .btn-ghost::after{content:'→';color:var(--gold);}
+    footer{background:var(--mid);padding:4rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;}
+    .footer-logo img{height:36px;width:auto;display:block;margin-bottom:1rem;opacity:0.9;}
+    .footer-tagline{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:1rem;color:var(--gold);letter-spacing:0.05em;}
+    .footer-right{text-align:right;}
+    .footer-copy{font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--text-muted);}
+    .footer-links{display:flex;gap:2rem;justify-content:flex-end;margin-bottom:1rem;flex-wrap:wrap;}
+    .footer-links a{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gold);}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity 0.8s,transform 0.8s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.22s;}.reveal-delay-3{transition-delay:0.36s;}
+    @media(max-width:900px){
+      nav{padding:1.2rem 2rem;}.nav-links{display:none;}
+      .page-hero{padding:0 2rem 4rem;}
+      section{padding:5rem 2rem;}
+      .skill-grid,.outcome-grid{grid-template-columns:1fr;}
+      footer{grid-template-columns:1fr;padding:3rem 2rem;}
+      .footer-right{text-align:left;}.footer-links{justify-content:flex-start;}
+    }
+  </style>
+  <link rel="stylesheet" href="mobile.css"/>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="programmes.html">Programmes</a></li>
+      <li><a href="course.html" class="active">What We Teach</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="schools.html">Schools</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-eyebrow">// Curriculum</p>
+      <h1 class="page-title">WHAT WE<br><span class="gold">TEACH</span></h1>
+      <p class="page-lead">Saturday Ultimate Youth Project (UYP) players cover the same content at their own pace. The coach adapts the pacing to the squad. School programmes use the same skills inside a school term.</p>
+    </div>
+  </div>
+
+  <section class="skills">
+    <p class="section-tag reveal">// Skill areas</p>
+    <h2 class="section-title reveal reveal-delay-1">WHAT PLAYERS<br><span class="outline">LEARN</span></h2>
+    <p class="lede reveal reveal-delay-2">We keep returning to the same skills and go deeper, rather than adding a new system each time. Saturday UYP is for ages 12–20. School programmes are for secondary students. The coach adapts the work for beginners through to players who already compete.</p>
+
+    <div class="skill-group reveal">
+      <h3>With the disc</h3>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-name">Throwing</div>
+          <div class="skill-plain">Passing the disc</div>
+          <div class="skill-desc">A flat backhand and forehand, turning to face the throw, and a pass that curves past the defender guarding the thrower. More experienced players also learn a long throw.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Cutting</div>
+          <div class="skill-plain">Running to get free</div>
+          <div class="skill-desc">A sharp change of direction, moving sideways, timing the run, and using space so a teammate can throw to you.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Catching</div>
+          <div class="skill-plain">Taking the disc</div>
+          <div class="skill-desc">Catching while running, without slowing down. Catching in space, and catching high and low.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>Defending</h3>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-name">Footwork</div>
+          <div class="skill-plain">Moving well</div>
+          <div class="skill-desc">A ready stance, moving sideways and backwards, a quick first step, and guarding the thrower without making contact. Ultimate is non-contact by rule.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Space</div>
+          <div class="skill-plain">Taking away the easy option</div>
+          <div class="skill-desc">Denying the space the player you guard wants, and closing gaps together as a team.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">Positioning</div>
+          <div class="skill-plain">Staying with your player</div>
+          <div class="skill-desc">Staying between the player you guard and the disc, or the end zone they are trying to reach.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h3>On both sides</h3>
+      <div class="skill-grid one">
+        <div class="skill-card">
+          <div class="skill-name">Decisions</div>
+          <div class="skill-plain">What to do next</div>
+          <div class="skill-desc">On attack, players learn one basic formation: who starts the play, and who runs to get free. They choose a throw before the defender finishes counting to 10. On defense, each player guards one person, the team steers throws toward one side, and players talk when they need to switch.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes" id="outcomes">
+    <p class="section-tag reveal">// Character</p>
+    <h2 class="section-title reveal reveal-delay-1">SIX<br><span class="outline">OUTCOMES</span></h2>
+    <p class="lede reveal reveal-delay-2">We teach, observe and report three outcomes: communication, leadership and critical thinking. We also watch for confidence, initiative and self-awareness. These are observed and reported, not graded. Communication comes first, because a player who can explain their thinking can lead and work out what to do next.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-kind">Taught &amp; reported</div>
+        <div class="outcome-name">Communication</div>
+        <div class="outcome-desc">Shares their view clearly, listens to the other side of a call, and resolves disagreements with respect. Players practise saying a teammate's name before the call, make and sort out calls in games they referee themselves, and are invited to speak at the end. No one has to speak.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-kind">Taught &amp; reported</div>
+        <div class="outcome-name">Leadership</div>
+        <div class="outcome-desc">Takes charge when given a role and lifts teammates who are struggling. Players take turns as captain, one player leads part of the warm-up, and players who have been here longer help newer players.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-3">
+        <div class="outcome-kind">Taught &amp; reported</div>
+        <div class="outcome-name">Critical Thinking</div>
+        <div class="outcome-desc">Reads situations from different angles and solves problems instead of dwelling on mistakes. During a game the coach sometimes pauses and asks a player what they see and what they would do next.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-kind emerge">Watched &amp; reported</div>
+        <div class="outcome-name">Confidence</div>
+        <div class="outcome-desc">Willing to try, and to fail safely, on and off the field. Mistakes are expected in practice, and every player gets time in the game.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-kind emerge">Watched &amp; reported</div>
+        <div class="outcome-name">Initiative</div>
+        <div class="outcome-desc">Sees what needs doing and steps up without being asked. Some jobs, such as setting up or starting a drill, are left open so a player can step forward.</div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-3">
+        <div class="outcome-kind emerge">Watched &amp; reported</div>
+        <div class="outcome-name">Self-Awareness</div>
+        <div class="outcome-desc">Knows their strengths and limits, and asks for help when they need it. Players are invited to name what they do well and what to work on next, and the coach talks with them about it.</div>
+      </div>
+    </div>
+    <div class="progress-note reveal">
+      <div class="progress-label">// How progress is observed and reported</div>
+      <p>We observe and report each outcome, from "not yet visible" to "established". UYP parents get a monthly progress update. If your child joins through their school, the school gets a summary report each term. The school can also ask for individual notes on each student. Players will have the opportunity to compete in DC Ultimate Frisbee Academy events.</p>
+    </div>
+  </section>
+
+  <section class="session">
+    <p class="section-tag reveal">// In a session</p>
+    <h2 class="section-title reveal reveal-delay-1">THE SAME<br><span class="outline">FOUR BLOCKS</span></h2>
+    <p class="lede reveal reveal-delay-2">Every session follows the same four blocks, so players know what to expect. Each block builds a character skill as well as a sport skill.</p>
+    <div class="session-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Warm-up</div>
+          <div class="step-desc">Movement prep and a short activity that brings the group to the same energy. One player leads part of it. This builds communication.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Skill practice</div>
+          <div class="step-desc">Practice that mixes more than one skill at a time. The practice itself teaches the decision, which builds critical thinking.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Game play</div>
+          <div class="step-desc">Small-sided games where players make their own calls, with one player given a captain's challenge. This builds leadership. Every player gets game time.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Spirit circle</div>
+          <div class="step-desc">A short group chat at the end, during stretching. The coach encourages players and invites them to share a reflection. No one has to speak.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spirit">
+    <p class="section-tag reveal">// Spirit of the game</p>
+    <h2 class="section-title reveal reveal-delay-1">PLAYERS<br><span class="outline">REFEREE THEMSELVES</span></h2>
+    <p class="reveal reveal-delay-2">Ultimate is one of the only sports with no referee, and it is non-contact by rule. Players learn the basic rules needed to get a game going, including how to make a call, listen to the other side, and accept the result.</p>
+    <div class="next-links reveal">
+      <a href="programmes.html#uyp" class="btn-primary">Saturday UYP</a>
+      <a href="schools.html#term" class="btn-ghost">School term format</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><img src="images/logo.png" alt="DC Ultimate Frisbee Academy"/></div>
+      <div class="footer-tagline">Making the Ultimate Athlete.</div>
+      <div class="footer-contact">
+        <a href="https://wa.me/60173121033" target="_blank" rel="noopener">WhatsApp 017-312 1033</a>
+        <a href="mailto:dcultimatefrisbeeclub@gmail.com">dcultimatefrisbeeclub@gmail.com</a>
+        <a href="https://www.instagram.com/dcultiacademy" target="_blank" rel="noopener">@dcultiacademy</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="course.html">What We Teach</a>
+        <a href="events.html">Events</a>
+        <a href="schools.html">Schools</a>
+        <a href="faq.html">FAQ</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="media.html">Media</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 DC Ultimate Frisbee Academy · Malaysia</div>
+    </div>
+  </footer>
+  <script>
+    const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+    animRing();
+    document.querySelectorAll('a,button,.skill-card,.outcome-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.2)';cursor.style.background='#e8c96a';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='0.2';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.background='var(--gold)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='0.4';});
+    });
+    document.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+  </script>
+  <script src="mobile.js"></script>
+</body>
+</html>
