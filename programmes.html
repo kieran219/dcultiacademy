@@ -124,20 +124,8 @@
     .reveal-delay-3{transition-delay:0.36s;}
     /* Course structure */
     .course{background:var(--black);}
-    .course-intro{margin-top:1.5rem;font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.55);max-width:560px;}
-    .fund-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.08);margin-top:3.5rem;}
-    .fund-card{background:var(--black);padding:2.4rem 2rem;}
-    .fund-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;text-transform:uppercase;color:var(--gold);}
-    .fund-desc{font-size:0.9rem;line-height:1.7;color:rgba(245,240,232,0.5);margin-top:0.7rem;}
-    .rounds{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;}
-    .round{border-top:2px solid rgba(201,168,76,0.35);padding-top:1.4rem;}
-    .round:last-child{border-top-color:var(--gold);}
-    .round-weeks{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);}
-    .round-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;text-transform:uppercase;margin-top:0.4rem;}
-    .round-desc{font-size:0.92rem;line-height:1.7;color:rgba(245,240,232,0.5);margin-top:0.4rem;}
-    .progress-note{margin-top:3.5rem;background:var(--mid);border:1px solid rgba(201,168,76,0.15);padding:2.2rem 2.4rem;max-width:860px;}
-    .progress-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
-    .progress-note p{font-size:0.98rem;line-height:1.8;color:rgba(245,240,232,0.62);}
+    .course-intro{margin-top:1.5rem;font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,0.55);max-width:640px;}
+    .course-links{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;margin-top:2.2rem;}
     /* Trial band */
     .trial-band{background:var(--mid);border-top:1px solid rgba(201,168,76,0.12);display:flex;justify-content:space-between;align-items:center;gap:3rem;padding:6rem 4rem;}
     .trial-text{max-width:560px;}
@@ -147,7 +135,7 @@
       .page-hero{padding:0 2rem 4rem;}
       section{padding:5rem 2rem;}
       .services-grid{grid-template-columns:1fr;}
-      .fund-grid{grid-template-columns:1fr 1fr;}.rounds{grid-template-columns:1fr;}
+      .course-links{align-items:flex-start;}
       .trial-band{flex-direction:column;align-items:flex-start;padding:4rem 2rem;}
       .pricing-grid{grid-template-columns:1fr;}
       .uyp-layout{grid-template-columns:1fr;gap:2rem;}
@@ -168,6 +156,7 @@
         <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="programmes.html" class="active">Programmes</a></li>
+      <li><a href="course.html">What We Teach</a></li>
       <li><a href="events.html">Events</a></li>
       <li><a href="schools.html">Schools</a></li>
       <li><a href="faq.html">FAQ</a></li>
@@ -248,7 +237,7 @@
         <div class="step-num">02</div>
         <div class="step-body">
           <div class="step-title">Skill Block</div>
-          <div class="step-desc">Constraint-based drills that mix two or more fundamentals while spotlighting the week's focus skill. The drill design teaches the decision. Builds critical thinking.</div>
+          <div class="step-desc">Practice that mixes more than one skill at a time, spotlighting the skill the coach has chosen. The practice itself teaches the decision. Builds critical thinking.</div>
         </div>
       </div>
       <div class="step reveal">
@@ -268,54 +257,14 @@
     </div>
   </section>
 
-  <!-- COURSE STRUCTURE -->
+  <!-- WHAT WE TEACH -->
   <section class="course">
-    <p class="section-tag reveal">// Course Structure</p>
-    <h2 class="section-title reveal reveal-delay-1">A 12-WEEK TERM,<br><span class="outline">FUNDAMENTALS FIRST</span></h2>
-    <p class="course-intro reveal reveal-delay-2">For school programmes, a term runs for 12 weeks. Students learn the skills, practise them against opponents, then play full games. In the Week 12 Showcase, students lead the warm-up, play and reflect in front of parents. Every term returns to four fundamentals and goes deeper.</p>
-    <div class="fund-grid">
-      <div class="fund-card reveal reveal-delay-1">
-        <div class="fund-name">Throwing</div>
-        <div class="fund-desc">Flat backhands and forehands, arounds and uplines. Hucks for more proficient players.</div>
-      </div>
-      <div class="fund-card reveal reveal-delay-2">
-        <div class="fund-name">Cutting</div>
-        <div class="fund-desc">Jab cuts, lateral explosiveness, change of direction, timing and using space.</div>
-      </div>
-      <div class="fund-card reveal reveal-delay-3">
-        <div class="fund-name">Catching</div>
-        <div class="fund-desc">Catching at speed without slowing down, catching in space, high and low catches.</div>
-      </div>
-      <div class="fund-card reveal reveal-delay-3">
-        <div class="fund-name">Strategy</div>
-        <div class="fund-desc">Spacing, handler and cutter roles, reading the force and decisions within the stall count.</div>
-      </div>
-    </div>
-    <div class="rounds">
-      <div class="round reveal reveal-delay-1">
-        <div class="round-weeks">Weeks 1–4</div>
-        <div class="round-name">Learn</div>
-        <div class="round-desc">The technique of each fundamental, without pressure.</div>
-      </div>
-      <div class="round reveal reveal-delay-2">
-        <div class="round-weeks">Weeks 5–8</div>
-        <div class="round-name">Pressure</div>
-        <div class="round-desc">The same skills against a marker or defender.</div>
-      </div>
-      <div class="round reveal reveal-delay-3">
-        <div class="round-weeks">Weeks 9–11</div>
-        <div class="round-name">Game</div>
-        <div class="round-desc">Full games.</div>
-      </div>
-      <div class="round reveal reveal-delay-3">
-        <div class="round-weeks">Week 12</div>
-        <div class="round-name">Week 12 Showcase</div>
-        <div class="round-desc">Students lead the warm-up, play and reflect in front of parents.</div>
-      </div>
-    </div>
-    <div class="progress-note reveal">
-      <div class="progress-label">// How progress is observed and reported</div>
-      <p>We teach, observe and report three outcomes: communication, leadership and critical thinking. We also watch for confidence, initiative and self-awareness. We observe and report each one, from "not yet visible" to "established". UYP parents get a monthly progress update. If your child joins through their school, the school gets a summary report each term. The school can also ask for individual notes on each student.</p>
+    <p class="section-tag reveal">// What We Teach</p>
+    <h2 class="section-title reveal reveal-delay-1">THE SAME SKILLS,<br><span class="outline">AT THEIR PACE</span></h2>
+    <p class="course-intro reveal reveal-delay-2">Saturday Ultimate Youth Project (UYP) players cover the same content as school programmes, at their own pace. The coach adapts the pacing to the squad. School CCA programmes use a 12-week term, including the Week 12 Showcase.</p>
+    <div class="course-links reveal">
+      <a href="course.html" class="btn-primary">What we teach</a>
+      <a href="schools.html#term" class="btn-ghost">School term format</a>
     </div>
   </section>
 
@@ -430,6 +379,7 @@
       <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="programmes.html">Programmes</a>
+        <a href="course.html">What We Teach</a>
         <a href="events.html">Events</a>
         <a href="schools.html">Schools</a>
         <a href="faq.html">FAQ</a>
